@@ -6,21 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>android自定义控件 | Hexo</title>
+  <title>ICMP | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+  <meta name="description" content="ICMPICMP 全称是 Internet Control Message Protocol，也就是互联网控制报文协议。 网络包在复杂的网络传输环境里，常常会遇到各种问题。当遇到问题的时候，需要传出消息，报告遇到了什么问题，这样才可以调整传输策略，以此来控制整个局面。  ICMP 功能都有啥？  ICMP 主要的功能包括：确认 IP 包是否成功送达目标地址、报告发送过程中 IP 包被废弃的原因和改">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android自定义控件">
-<meta property="og:url" content="http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/index.html">
+<meta property="og:title" content="ICMP">
+<meta property="og:url" content="http://yoursite.com/2020/07/13/ICMP/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+<meta property="og:description" content="ICMPICMP 全称是 Internet Control Message Protocol，也就是互联网控制报文协议。 网络包在复杂的网络传输环境里，常常会遇到各种问题。当遇到问题的时候，需要传出消息，报告遇到了什么问题，这样才可以调整传输策略，以此来控制整个局面。  ICMP 功能都有啥？  ICMP 主要的功能包括：确认 IP 包是否成功送达目标地址、报告发送过程中 IP 包被废弃的原因和改">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
-<meta property="article:published_time" content="2020-07-13T00:04:02.456Z">
-<meta property="article:modified_time" content="2019-06-03T09:35:40.003Z">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2hPGQicprZ2jkVyF1KtoQy5qpYzTugdlmV9uIILUPOf9JlaGiaU5T8S2Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj29gb37HdxOjFprAJ1zycOxZdHEbz4tafArtrZFAibw90Dn1BJmgaG5eg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2cYIKkypfRDryqO6XQHIpkeNFRwFSqEztxOuVlE3nYKzFn0CZBcIeDg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2yFQ5HKicZWqLKV9DpjMibekE5Mmj9xFaDuQAvrscth9tcLLlLjGCtEYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2KWMRsf0SOt9RCST158qWxkPzFF7c2MWicTV8QXdkPSJkniaGT7nVwicYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2MJbBOGE6XstAjb7TicLYbJ2RoicwicRJG6vSIDMhFibRtWAJLRkTafXdBw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2mRRvU21YQEV9NeaUhSVpJBJUxWbmDBbQ2fflqWOtAR7vrMKrs3vHqQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2OA0eyVEJUKbCgerSnmX3OIEIQ659hwnT4qqbQofiamvPwtbnM5KYs4g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2EBPWwYSRyWE5nMobzOe5YrQKqAOc9do8j5aUrhl0xDve51Ha3Apibcw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2cfBans1PsaCTeicA64zIojjhRcl11Ob7NomribCId4HJicO17rVhZUZqg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2V5b9p7V1DkibKE8U9lSXm2oOiadgbnwIHrygwawiaYpttV5ypACyCHrEQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2oCw4F1JJp3OiaCxFmObiaxibkAHfq8uUG7VIORj5R3chUVd59iaic2LDSjg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2020-07-13T00:32:44.716Z">
+<meta property="article:modified_time" content="2020-06-07T10:02:02.632Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2hPGQicprZ2jkVyF1KtoQy5qpYzTugdlmV9uIILUPOf9JlaGiaU5T8S2Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,84 +167,151 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-android自定义控件" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ICMP" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      android自定义控件
+      ICMP
     </h1>
   
 
         
-        <a href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-07-13T00:04:02.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+        <a href="/2020/07/13/ICMP/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.716Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="画板-自定义控件实现轨迹划线"><a href="#画板-自定义控件实现轨迹划线" class="headerlink" title="画板|自定义控件实现轨迹划线"></a>画板|自定义控件实现轨迹划线</h1><p>  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。</p>
-<p> 先上完整代码和效果</p>
-<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png" alt="1559554153617"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">     <span class="keyword">private</span> Path mPath;<span class="comment">//路径</span></span><br><span class="line">     <span class="keyword">private</span> Paint mLinePaint=<span class="keyword">new</span> Paint();<span class="comment">//路径画笔</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">float</span> mStokeWidth=<span class="number">8</span>;<span class="comment">// 画笔线的大小</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPathColor =    Color.parseColor(<span class="string">"#212121"</span>);<span class="comment">//画笔颜色</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreX;<span class="comment">//手指位置x</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreY;<span class="comment">//手指位置y</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mColor;</span><br><span class="line">     ArrayList&lt;Integer&gt; colors=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     ArrayList&lt;Path&gt; paths=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context,attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">         <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">  mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line"> mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line"> mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;<span class="comment">//监听滑动</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor=mPathColor;</span><br><span class="line">            mPath=<span class="keyword">new</span> Path();</span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: down"</span>);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   <span class="keyword">int</span> endX=((<span class="keyword">int</span>)event.getX()+mPreX)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> endY=((<span class="keyword">int</span>)event.getY()+mPreY)/<span class="number">2</span>;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);<span class="comment">//用贝济埃曲线</span></span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: move"</span>);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment">//更换画笔颜色</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPaintColor</span><span class="params">(String color</span></span></span><br><span class="line"><span class="function"><span class="params">       mPathColor=Color.parseColor(color)</span></span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">                           </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;paths.size();i++) &#123;</span><br><span class="line">    mLinePaint.setColor(colors.get(i));</span><br><span class="line">    canvas.drawPath(paths.get(i), mLinePaint);</span><br><span class="line">  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">   <span class="comment">// 清屏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        colors.clear();</span><br><span class="line">        paths.clear();</span><br><span class="line">        postInvalidate();</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">  <span class="comment">//撤销</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lineWithdraw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (paths.size()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        colors.remove(colors.size()-<span class="number">1</span>);</span><br><span class="line">        paths.remove(paths.size()-<span class="number">1</span>);</span><br><span class="line">        postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> <strong>1. 新建一个类继承自View</strong></p>
-<pre><code>public class DrawView extends View {
-   public DrawView(Context context) {
-        super(context);
-}
-
-public DrawView(Context context, AttributeSet attrs)
-{
-    super(context,attrs);
-    init();
-}
-
-public DrawView(Context context, AttributeSet attrs, int defStyle)
-{
-     super(context);
-
-}</code></pre><p>   <strong>2. 重写构造函数</strong></p>
-<p> view的构造函数有如上三个</p>
-<ol>
-<li>在代码中直接new一个 View实例的时候调用第一个构造函数。</li>
-<li>在xml布局文件中调用View的时候,会调用第二个构造函数。</li>
-<li>第三个构造函数的调用,通常是我们自己在构造函数中主动调用的</li>
-</ol>
-<p><strong>注意因为我们是在xml布局文件中调用自定义view，所以我们要重写第二个构造函数 。</strong>传入attrs 改成 super(context,attrs);不然会获取不到这个view。接着调用自定义函数 init();进行初始化。</p>
-<p>  <strong>3.初始化画笔</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line">mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line">mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们画图需要两个工具纸和笔，在android中分别对应Paint和Canvas。需要Paint进行自定义view曲线的绘制</p>
-<p>在这里我们设置了画笔的属性颜色，宽度，填充风格</p>
-<p>其中Paint.Style.STROKE为仅描边</p>
-<p>Paint.Style.FILL 仅填充内部</p>
-<p>Paint.Style.FILLL_AND_STROKEN 填充内部和描边</p>
-<p><strong>4.监听滑动</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;&#x2F;&#x2F;监听滑动</span><br><span class="line">&#x2F;&#x2F;触摸按下时</span><br><span class="line">if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor&#x3D;mPathColor;</span><br><span class="line">            mPath&#x3D;new Path();</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: down&quot;);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            return true;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;触摸点移动时</span><br><span class="line">       else if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   int endX&#x3D;((int)event.getX()+mPreX)&#x2F;2;</span><br><span class="line">            int endY&#x3D;((int)event.getY()+mPreY)&#x2F;2;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);&#x2F;&#x2F;用贝济埃曲线</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: move&quot;);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return super.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的Path是一个路径，你能用Canvas中的drawPath来把这条路径画出来这里用了两个list分别用来保存每条路径和路径的颜色。</p>
-<p>路径的始点用moveTo(); </p>
-<p>这里用了贝塞尔曲线使路径看起来比较平滑</p>
-<p>quadTo(float x1, float y1, float x2, float y2):</p>
-<p>x1，y1为控制点的坐标值，x2，y2为终点的坐标值；</p>
-<p>直接用lineTo连接点也行比较简单。</p>
-<p>postInvalidate是Android用来刷新界面的。调用了onDraw（）进行重新绘制。</p>
-<p>到这里画板的功能已经大部分完成了。再耐心点看下去</p>
-<p><strong>5.更换画笔颜色，清屏，撤销</strong></p>
-<p>这些比较简单就看下上面代码就行了</p>
-<p><strong>6.在活动显示这个自定义view</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.example.draw.view.DrawView</span><br><span class="line">    android:background&#x3D;&quot;@color&#x2F;white&quot;</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;drawview_draw_draw&quot;</span><br><span class="line">    android:layout_below&#x3D;&quot;@id&#x2F;re_draw_control&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>像这样直接在layout中加入即可</p>
-<p>使用时像其他控件一样使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mDrawView=findViewById(R.id.drawview_draw_draw);</span><br><span class="line">mDrawView.clear()</span><br><span class="line">mDrawView.lineWithdraw();</span><br><span class="line">mDrawView.setPaintColor(<span class="string">"#212121"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这篇博客到这就结束了。第一次写不足之处，还望各位批评指正，和大家一起交流。觉得有帮助可以帮忙点个赞hhh。</p>
+        <h1 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h1><p>ICMP 全称是 <strong>Internet Control Message Protocol</strong>，也就是<strong>互联网控制报文协议</strong>。</p>
+<p>网络包在复杂的网络传输环境里，常常会遇到各种问题。当遇到问题的时候，需要传出消息，报告遇到了什么问题，这样才可以调整传输策略，以此来控制整个局面。</p>
+<blockquote>
+<p>ICMP 功能都有啥？</p>
+</blockquote>
+<p><code>ICMP</code> 主要的功能包括：<strong>确认 IP 包是否成功送达目标地址、报告发送过程中 IP 包被废弃的原因和改善网络设置等。</strong></p>
+<p>在 <code>IP</code> 通信中如果某个 <code>IP</code> 包因为某种原因未能达到目标地址，那么这个具体的原因将<strong>由 ICMP 负责通知</strong>。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2hPGQicprZ2jkVyF1KtoQy5qpYzTugdlmV9uIILUPOf9JlaGiaU5T8S2Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h2 id="ICMP包头格式"><a href="#ICMP包头格式" class="headerlink" title="ICMP包头格式"></a>ICMP包头格式</h2><p>ICMP 报文是封装在 IP 包里面，它工作在网络层，是 IP 协议的助手。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj29gb37HdxOjFprAJ1zycOxZdHEbz4tafArtrZFAibw90Dn1BJmgaG5eg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>ICMP 包头的<strong>类型</strong>字段，大致可以分为两大类：</p>
+<ul>
+<li>一类是用于诊断的查询消息，也就是「<strong>查询报文类型</strong>」</li>
+<li>另一类是通知出错原因的错误消息，也就是「<strong>差错报文类型</strong>」</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2cYIKkypfRDryqO6XQHIpkeNFRwFSqEztxOuVlE3nYKzFn0CZBcIeDg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h2 id="查询报文类型"><a href="#查询报文类型" class="headerlink" title="查询报文类型"></a>查询报文类型</h2><p>###回送消息</p>
+<blockquote>
+<p>回送消息 —— 类型 <code>0</code> 和 <code>8</code></p>
+</blockquote>
+<p><strong>回送消息</strong>用于进行通信的主机或路由器之间，判断所发送的数据包是否已经成功到达对端的一种消息，<code>ping</code> 命令就是利用这个消息实现的。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2yFQ5HKicZWqLKV9DpjMibekE5Mmj9xFaDuQAvrscth9tcLLlLjGCtEYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>可以向对端主机发送<strong>回送请求</strong>的消息（<code>ICMP Echo Request Message</code>，类型 <code>8</code>），也可以接收对端主机发回来的<strong>回送应答</strong>消息（<code>ICMP Echo Reply Message</code>，类型 <code>0</code>）。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2KWMRsf0SOt9RCST158qWxkPzFF7c2MWicTV8QXdkPSJkniaGT7nVwicYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>相比原生的 ICMP，这里多了两个字段：</p>
+<ul>
+<li><strong>标识符</strong>：用以区分是哪个应用程序发 ICMP 包，比如用进程 <code>PID</code> 作为标识符；</li>
+<li><strong>序号</strong>：序列号从 <code>0</code> 开始，每发送一次新的回送请求就会加 <code>1</code>， 可以用来确认网络包是否有丢失。</li>
+</ul>
+<p>在<strong>选项数据</strong>中，<code>ping</code> 还会存放发送请求的时间值，来计算往返时间，说明路程的长短。</p>
+<p>###差错报文类型</p>
+<ul>
+<li>目标不可达消息 —— 类型 为 <code>3</code></li>
+<li>原点抑制消息 —— 类型 <code>4</code></li>
+<li>重定向消息 —— 类型 <code>5</code></li>
+<li>超时消息 —— 类型 <code>11</code></li>
+</ul>
+<h4 id="目标不可达"><a href="#目标不可达" class="headerlink" title="目标不可达"></a>目标不可达</h4><blockquote>
+<p>目标不可达消息（Destination Unreachable Message） —— 类型为 <code>3</code></p>
+</blockquote>
+<p>IP 路由器无法将 IP 数据包发送给目标地址时，会给发送端主机返回一个<strong>目标不可达</strong>的 ICMP 消息，并在这个消息中<strong>显示不可达的具体原因</strong>，原因记录在 ICMP 包头的<strong>代码</strong>字段。</p>
+<p>根据 ICMP 不可达的具体消息，发送端主机也就可以了解此次发送<strong>不可达的具体原因</strong>。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2MJbBOGE6XstAjb7TicLYbJ2RoicwicRJG6vSIDMhFibRtWAJLRkTafXdBw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<ul>
+<li><p>网络不可达代码为 <code>0</code></p>
+<p>IP 地址是分为网络号和主机号的，所以当路由器中的路由器表匹配不到接收方 IP 的网络号，就通过 ICMP 协议以<strong>网络不可达</strong>（<code>Network Unreachable</code>）的原因告知主机。</p>
+</li>
+<li><p>主机不可达代码为 <code>1</code></p>
+<p>当路由表中没有该主机的信息，或者该主机没有连接到网络，那么会通过 ICMP 协议以<strong>主机不可达</strong>（<code>Host Unreachable</code>）的原因告知主机。</p>
+</li>
+<li><p>协议不可达代码为 <code>2</code></p>
+<p>当主机使用 TCP 协议访问对端主机时，能找到对端的主机了，可是对端主机的防火墙已经禁止 TCP 协议访问，那么会通过 ICMP 协议以<strong>协议不可达</strong>的原因告知主机。</p>
+</li>
+<li><p>端口不可达代码为 <code>3</code></p>
+<p>当主机访问对端主机 8080 端口时，这次能找到对端主机了，防火墙也没有限制，可是发现对端主机没有进程监听 8080 端口，那么会通过 ICMP 协议以<strong>端口不可达</strong>的原因告知主机。</p>
+</li>
+<li><p>需要进行分片但设置了不分片位代码为 <code>4</code></p>
+<p>发送端主机发送 IP 数据报时，将 IP 首部的<strong>分片禁止标志位</strong>设置为<code>1</code>。根据这个标志位，途中的路由器遇到超过 MTU 大小的数据包时，不会进行分片，而是直接抛弃。                                                                                                        </p>
+</li>
+</ul>
+<h4 id="原点抑制"><a href="#原点抑制" class="headerlink" title="原点抑制"></a>原点抑制</h4><blockquote>
+<p>原点抑制消息（ICMP Source Quench Message） —— 类型 <code>4</code></p>
+</blockquote>
+<p>在使用低速广域线路的情况下，连接 WAN 的路由器可能会遇到网络拥堵的问题。<code>ICMP</code> 原点抑制消息的目的就是<strong>为了缓和这种拥堵情况</strong>。</p>
+<p>当路由器向低速线路发送数据时，其发送队列的缓存变为零而无法发送出去时，可以向 IP 包的源地址发送一个 ICMP <strong>原点抑制消息</strong>。</p>
+<p>收到这个消息的主机借此了解在整个线路的某一处发生了拥堵的情况，从而增大 IP 包的传输间隔，减少网络拥堵的情况。</p>
+<p>然而，由于这种 ICMP 可能会引起不公平的网络通信，一般不被使用。</p>
+<h4 id="重定向消息"><a href="#重定向消息" class="headerlink" title="重定向消息"></a>重定向消息</h4><blockquote>
+<p>重定向消息（ICMP Redirect Message） —— 类型 <code>5</code></p>
+</blockquote>
+<p>如果路由器发现发送端主机使用了「不是最优」的路径发送数据，那么它会返回一个 ICMP <strong>重定向消息</strong>给这个主机。</p>
+<p>在这个消息中包含了<strong>最合适的路由信息和源数据</strong>。这主要发生在路由器持有更好的路由信息的情况下。路由器会通过这样的 ICMP 消息告知发送端，让它下次发给另外一个路由器。（就是本来直接就可以用哪个路由器发的。绕了一圈才到）</p>
+<h4 id="超时消息"><a href="#超时消息" class="headerlink" title="超时消息"></a>超时消息</h4><blockquote>
+<p>超时消息（ICMP Time Exceeded Message） —— 类型 <code>11</code></p>
+</blockquote>
+<p>IP 包中有一个字段叫做 <code>TTL</code> （<code>Time To Live</code>，生存周期），它的<strong>值随着每经过一次路由器就会减 1，直到减到 0 时该 IP 包会被丢弃。</strong></p>
+<p>此时，IP 路由器将会发送一个 ICMP <strong>超时消息</strong>给发送端主机，并通知该包已被丢弃。</p>
+<p>设置 IP 包生存周期的主要目的，是为了在路由控制遇到问题发生循环状况时，避免 IP 包无休止地在网络上被转发。</p>
+<p>此外，有时可以用 TTL 控制包的到达范围，例如设置一个<strong>较小的 TTL 值</strong>。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>ping 命令执行的时候，源主机首先会构建一个 <strong>ICMP 回送请求消息</strong>数据包。</p>
+<p>ICMP 数据包内包含多个字段，最重要的是两个：</p>
+<ul>
+<li>第一个是<strong>类型</strong>，对于回送请求消息而言该字段为 <code>8</code>；</li>
+<li>另外一个是<strong>序号</strong>，主要用于区分连续 ping 的时候发出的多个数据包。</li>
+</ul>
+<p>每发出一个请求数据包，序号会自动加 <code>1</code>。为了能够计算往返时间 <code>RTT</code>，它会在报文的数据部分插入发送时间。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2mRRvU21YQEV9NeaUhSVpJBJUxWbmDBbQ2fflqWOtAR7vrMKrs3vHqQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>然后，由 ICMP 协议将这个数据包连同地址 192.168.1.2 一起交给 IP 层。IP 层将以 192.168.1.2 作为<strong>目的地址</strong>，本机 IP 地址作为<strong>源地址</strong>，<strong>协议</strong>字段设置为 <code>1</code> 表示是 <code>ICMP</code>协议，在加上一些其他控制信息，构建一个 <code>IP</code> 数据包。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2OA0eyVEJUKbCgerSnmX3OIEIQ659hwnT4qqbQofiamvPwtbnM5KYs4g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>接下来，需要加入 <code>MAC</code> 头。如果在本地 ARP 映射表中查找出 IP 地址 192.168.1.2 所对应的 MAC 地址，则可以直接使用；如果没有，则需要发送 <code>ARP</code> 协议查询 MAC 地址，获得 MAC 地址后，由数据链路层构建一个数据帧，目的地址是 IP 层传过来的 MAC 地址，源地址则是本机的 MAC 地址；还要附加上一些控制信息，依据以太网的介质访问规则，将它们传送出去。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2EBPWwYSRyWE5nMobzOe5YrQKqAOc9do8j5aUrhl0xDve51Ha3Apibcw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>主机 <code>B</code> 收到这个数据帧后，先检查它的目的 MAC 地址，并和本机的 MAC 地址对比，如符合，则接收，否则就丢弃。</p>
+<p>接收后检查该数据帧，将 IP 数据包从帧中提取出来，交给本机的 IP 层。同样，IP 层检查后，将有用的信息提取后交给 ICMP 协议。</p>
+<p>主机 <code>B</code> 会构建一个 <strong>ICMP 回送响应消息</strong>数据包，回送响应数据包的<strong>类型</strong>字段为 <code>0</code>，<strong>序号</strong>为接收到的请求数据包中的序号，然后再发送出去给主机 A。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2cfBans1PsaCTeicA64zIojjhRcl11Ob7NomribCId4HJicO17rVhZUZqg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>在规定的时候间内，源主机如果没有接到 ICMP 的应答包，则说明目标主机不可达；如果接收到了 ICMP 回送响应消息，则说明目标主机可达。</p>
+<p>此时，源主机会检查，用当前时刻减去该数据包最初从源主机上发出的时刻，就是 ICMP 数据包的时间延迟。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2V5b9p7V1DkibKE8U9lSXm2oOiadgbnwIHrygwawiaYpttV5ypACyCHrEQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h3 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h3><p>有一款充分利用 ICMP <strong>差错报文类型</strong>的应用叫做 <code>traceroute</code>（在UNIX、MacOS中是这个命令，而在Windows中对等的命令叫做 tracert ）。</p>
+<p><em>1. traceroute 作用一</em></p>
+<p>traceroute 的第一个作用就是<strong>故意设置特殊的 TTL，来追踪去往目的地时沿途经过的路由器。</strong></p>
+<p>traceroute 的参数指向某个<strong>目的 IP 地址</strong>：</p>
+<p>traceroute 192.168.1.100</p>
+<p>它的原理就是利用 IP 包的<strong>生存期限</strong> 从 <code>1</code> 开始按照顺序递增的同时发送 <strong>UDP 包</strong>，强制接收 <strong>ICMP 超时消息</strong>的一种方法。</p>
+<p>比如，将 TTL 设置 为 <code>1</code>，则遇到第一个路由器，就牺牲了，接着返回 ICMP 差错报文网络包，类型是<strong>时间超时</strong>。</p>
+<p>接下来将 TTL 设置为 <code>2</code>，第一个路由器过了，遇到第二个路由器也牺牲了，也同意返回了 ICMP 差错报文数据包，如此往复，直到到达目的主机。</p>
+<p>这样的过程，traceroute 就可以拿到了所有的路由器 IP。</p>
+<p>当然有的路由器根本就不会返回这个 ICMP，所以对于有的公网地址，是看不到中间经过的路由的。</p>
+<blockquote>
+<p>发送方如何知道发出的 UDP 包是否到达了目的主机呢？</p>
+</blockquote>
+<p>traceroute 在发送 <code>UDP</code> 包时，会填入一个<strong>不可能的端口号</strong>值作为 UDP 目标端口号（大于 <code>3000</code> ）。当目的主机，收到 UDP 包后，会返回 ICMP 差错报文消息，但这个差错报文消息的类型「<strong>端口不可达</strong>」。</p>
+<p>所以，<strong>当差错报文类型是端口不可达时，说明发送方发出的 UDP 包到达了目的主机。</strong></p>
+<p><em>2. traceroute 作用二</em></p>
+<p>traceroute 还有一个作用是<strong>故意设置不分片，从而确定路径的 MTU</strong>。</p>
+<blockquote>
+<p>这么做是为了什么？</p>
+</blockquote>
+<p>这样做的目的是为了<strong>路径MTU发现</strong>。</p>
+<p>因为有的时候我们并不知道路由器的 <code>MTU</code> 大小，以太网的数据链路上的 <code>MTU</code> 通常是 <code>1500</code>字节，但是非以太网的 <code>MTU</code> 值就不一样了，所以我们要知道 <code>MTU</code> 的大小，从而控制发送的包大小。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/J0g14CUwaZcZiaMXRx5FarzuAMKmf0Cj2oCw4F1JJp3OiaCxFmObiaxibkAHfq8uUG7VIORj5R3chUVd59iaic2LDSjg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>它的工作原理如下：</p>
+<p>首先在发送端主机发送 <code>IP</code> 数据报时，将 <code>IP</code> 包首部的<strong>分片禁止标志位设置为 1</strong>。根据这个标志位，途中的路由器不会对大数据包进行分片，而是将包丢弃。</p>
+<p>随后，通过一个 ICMP 的不可达消息将<strong>数据链路上 MTU 的值</strong>一起给发送主机，不可达消息的类型为「<strong>需要进行分片但设置了不分片位</strong>」。</p>
+<p>发送主机端每次收到 ICMP 差错报文时就<strong>减少</strong>包的大小，以此来定位一个合适的 <code>MTU</code> 值，以便能到达目标主机。</p>
 
       
 
@@ -313,7 +391,7 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/ICMP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +405,18 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
   
 <nav id="article-nav">
   
-    <a href="/2020/07/13/Binder/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/13/java%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Binder
+          java基础
         
       </div>
     </a>
   
   
-    <a href="/2020/07/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2020/07/13/HTTP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP</div>
       <i class="icon-circle-right"></i>
     </a>
   

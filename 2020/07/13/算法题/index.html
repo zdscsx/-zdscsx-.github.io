@@ -6,21 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>android自定义控件 | Hexo</title>
+  <title>算法题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+  <meta name="description" content="算法题 ##1.盛最多水的容器 给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。  答案：利用双指针，不断从低的柱子移动到高的柱子，记录移动过程中的最大容量 双指针代表了什么？ 双指针代表的是 可以作为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android自定义控件">
-<meta property="og:url" content="http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/index.html">
+<meta property="og:title" content="算法题">
+<meta property="og:url" content="http://yoursite.com/2020/07/13/%E7%AE%97%E6%B3%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+<meta property="og:description" content="算法题 ##1.盛最多水的容器 给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。  答案：利用双指针，不断从低的柱子移动到高的柱子，记录移动过程中的最大容量 双指针代表了什么？ 双指针代表的是 可以作为">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
-<meta property="article:published_time" content="2020-07-13T00:04:02.456Z">
-<meta property="article:modified_time" content="2019-06-03T09:35:40.003Z">
+<meta property="og:image" content="https://pic.leetcode-cn.com/8fe0c4643af3bc40317c127a5d45ab181f2dbbc18b7e9457d24db2a1b579e87f-file_1578972895649">
+<meta property="og:image" content="https://pic.leetcode-cn.com/5884538fb9541a31a807d59c81226ded3dcd61df66efcdeb000165036ea68bb9-Picture1.png">
+<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200630090312325.png">
+<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200630090423392.png">
+<meta property="article:published_time" content="2020-07-13T00:32:44.773Z">
+<meta property="article:modified_time" content="2020-07-11T13:37:15.742Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/8fe0c4643af3bc40317c127a5d45ab181f2dbbc18b7e9457d24db2a1b579e87f-file_1578972895649">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,84 +159,260 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-android自定义控件" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      android自定义控件
+      算法题
     </h1>
   
 
         
-        <a href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-07-13T00:04:02.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+        <a href="/2020/07/13/%E7%AE%97%E6%B3%95%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="画板-自定义控件实现轨迹划线"><a href="#画板-自定义控件实现轨迹划线" class="headerlink" title="画板|自定义控件实现轨迹划线"></a>画板|自定义控件实现轨迹划线</h1><p>  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。</p>
-<p> 先上完整代码和效果</p>
-<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png" alt="1559554153617"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">     <span class="keyword">private</span> Path mPath;<span class="comment">//路径</span></span><br><span class="line">     <span class="keyword">private</span> Paint mLinePaint=<span class="keyword">new</span> Paint();<span class="comment">//路径画笔</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">float</span> mStokeWidth=<span class="number">8</span>;<span class="comment">// 画笔线的大小</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPathColor =    Color.parseColor(<span class="string">"#212121"</span>);<span class="comment">//画笔颜色</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreX;<span class="comment">//手指位置x</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreY;<span class="comment">//手指位置y</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mColor;</span><br><span class="line">     ArrayList&lt;Integer&gt; colors=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     ArrayList&lt;Path&gt; paths=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context,attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">         <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">  mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line"> mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line"> mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;<span class="comment">//监听滑动</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor=mPathColor;</span><br><span class="line">            mPath=<span class="keyword">new</span> Path();</span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: down"</span>);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   <span class="keyword">int</span> endX=((<span class="keyword">int</span>)event.getX()+mPreX)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> endY=((<span class="keyword">int</span>)event.getY()+mPreY)/<span class="number">2</span>;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);<span class="comment">//用贝济埃曲线</span></span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: move"</span>);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment">//更换画笔颜色</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPaintColor</span><span class="params">(String color</span></span></span><br><span class="line"><span class="function"><span class="params">       mPathColor=Color.parseColor(color)</span></span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">                           </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;paths.size();i++) &#123;</span><br><span class="line">    mLinePaint.setColor(colors.get(i));</span><br><span class="line">    canvas.drawPath(paths.get(i), mLinePaint);</span><br><span class="line">  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">   <span class="comment">// 清屏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        colors.clear();</span><br><span class="line">        paths.clear();</span><br><span class="line">        postInvalidate();</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">  <span class="comment">//撤销</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lineWithdraw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (paths.size()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        colors.remove(colors.size()-<span class="number">1</span>);</span><br><span class="line">        paths.remove(paths.size()-<span class="number">1</span>);</span><br><span class="line">        postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>算法题</p>
+<p>##<strong>1.盛最多水的容器</strong></p>
+<p><strong>给你 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</strong> </p>
+<p>答案：利用双指针，不断从低的柱子移动到高的柱子，记录移动过程中的最大容量</p>
+<p>双指针代表了什么？</p>
+<p>双指针代表的是 可以作为容器边界的所有位置的范围。在一开始，双指针指向数组的左右边界，表示 数组中所有的位置都可以作为容器的边界，因为我们还没有进行过任何尝试。在这之后，我们每次将 对应的数字较小的那个指针 往 另一个指针 的方向移动一个位置，就表示我们认为 这个指针不可能再作为容器的边界了。反证：如果从高柱子移动到低柱子，根据木桶效应，容量只会下降。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JAVA</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, </span><br><span class="line">    j = height.length - <span class="number">1</span>,</span><br><span class="line">    res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line"> res = height[i] &lt; height[j] ? </span><br><span class="line">      Math.max(res, (j - i) * height[i++]): </span><br><span class="line">        Math.max(res, (j - i) * height[j--]); </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p> <strong>1. 新建一个类继承自View</strong></p>
-<pre><code>public class DrawView extends View {
-   public DrawView(Context context) {
-        super(context);
-}
 
-public DrawView(Context context, AttributeSet attrs)
-{
-    super(context,attrs);
-    init();
-}
 
-public DrawView(Context context, AttributeSet attrs, int defStyle)
-{
-     super(context);
+<h2 id="2-灯泡问题"><a href="#2-灯泡问题" class="headerlink" title="2.灯泡问题"></a>2.灯泡问题</h2><p>初始时有 n 个灯泡关闭。第 1 轮，你打开所有的灯泡。第 2 轮，每两个灯泡关闭一次。第 3 轮，每三个灯泡切换一次开关（如果关闭则开启，如果开启则关闭）。第 i 轮，每 i 个灯泡切换一次开关。对于第 n 轮，你只切换最后一个灯泡的开关。找出 n 轮后有多少个亮着的灯泡。</p>
+<p>示例:</p>
+<p>输入: 3</p>
+<p>输出: 1 </p>
+<p>解释: </p>
+<p>初始时, 灯泡状态 [关闭, 关闭, 关闭].</p>
+<p>第一轮后, 灯泡状态 [开启, 开启, 开启].</p>
+<p>第二轮后, 灯泡状态 [开启, 关闭, 开启].</p>
+<p>第三轮后, 灯泡状态 [开启, 关闭, 关闭]. </p>
+<p>分析：只要找到奇数个因子的数灯泡就是亮着的。因为总共开关次数为因子个数。</p>
+<p>找到n个灯泡中的奇数个因子个数就是找到里面的完全平方数.因为如果一个数m有因子n那另一个就是m/n。n和m/n是成对出现的。所有如果有n=m/n那就是完全平方数，那就奇数个因子。</p>
+<p>答案  sqrt(n)</p>
+<h2 id="3-100个圈问题"><a href="#3-100个圈问题" class="headerlink" title="3.100个圈问题"></a>3.100个圈问题</h2><p><strong>纸上从左到右画了一百个小圆圈（手速快，没办法）接下来，面试官要求两人轮流涂掉其中一个或者两个相邻的小圆圈。</strong>规定：谁涂掉最后一个小圆圈谁就赢了（换句话说，谁没有涂的了谁就输了）。问题是：小浩应该选取先涂还是后涂？如何才能有必胜策略？</p>
+<p>策梅洛定理（英语：Zermelo’s theorem）是博弈论的一条定理，以恩斯特·策梅洛命名。策梅洛的论文于1913年以德文发表。表示在二人的有限游戏中，如果双方皆拥有完全的资讯，并且运气因素并不牵涉在游戏中，那先行或后行者当一必有一方有必胜/必不败的策略。</p>
+<p>自己先手，涂掉中间的两个圈，然后面试官涂那个就跟着涂那个。面试官有涂，自己肯定有涂。</p>
+<h2 id="4-数组中的重复数字"><a href="#4-数组中的重复数字" class="headerlink" title="4.数组中的重复数字"></a>4.数组中的重复数字</h2><p>找出数组中重复的数字。</p>
+<p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
+<p>示例 1：</p>
+<p>输入：<br>[2, 3, 1, 0, 2, 5, 3]<br>输出：2 或 3 </p>
+<p>分析因为数字在0~n-1范围，考虑空间复杂度，完全可以省掉额外的空间开辟，将每个位置的数交换映射到其对应的数组下标下面，当出现新的元素与其对应的下标中的数字相等时，即为重复数字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findRepeatNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> length=nums.length;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">           <span class="keyword">while</span>(i!=nums[i])&#123;</span><br><span class="line">               <span class="keyword">if</span>(nums[i]==nums[nums[i]])</span><br><span class="line">               <span class="keyword">return</span> nums[i];</span><br><span class="line">               <span class="keyword">int</span> temp=nums[i];</span><br><span class="line">               nums[i]=nums[temp];</span><br><span class="line">               nums[temp]=temp;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> -<span class="number">1</span>;  &#125;</span><br></pre></td></tr></table></figure>
 
-}</code></pre><p>   <strong>2. 重写构造函数</strong></p>
-<p> view的构造函数有如上三个</p>
+<h2 id="5-完美数"><a href="#5-完美数" class="headerlink" title="5.完美数"></a>5.完美数</h2><p>对于一个 <strong>正整数</strong>，如果它和除了它自身以外的所有正因子之和相等，我们称它为“完美数”。</p>
+<p>给定一个 <strong>整数</strong> <code>n</code>， 如果他是完美数，返回 <code>True</code>，否则返回 <code>False</code></p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入: 28输出: True解释: 28 &#x3D; 1 + 2 + 4 + 7 + 14</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkPerfectNumber</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">1</span>; <span class="comment">// 正整数一定会有一个1，同时不用考虑自身，所以单独处理</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">double</span> sqrt = Math.sqrt(num);</span><br><span class="line">        <span class="keyword">for</span>(;i &lt; sqrt;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(num % i == <span class="number">0</span>) &#123;</span><br><span class="line">                sum += i;</span><br><span class="line">                sum += num / i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 此处单独处理的原因在于只需要加1次i值，如果在循环中会加2次</span></span><br><span class="line">        <span class="keyword">if</span>(i * i == num) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum == num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比较简单就直接上代码了，要注意的点有临界点，放在循环里面可能会加两次</p>
+<p>还有循环的初始值选取要是题目简单，如上面跳过一直接加</p>
+<h2 id="6-2的幂"><a href="#6-2的幂" class="headerlink" title="6.2的幂"></a>6.2的幂</h2><p>分析：使用n&amp;（n-1）可消去最右的1，最有的1右边不变</p>
+<p><img src="https://pic.leetcode-cn.com/8fe0c4643af3bc40317c127a5d45ab181f2dbbc18b7e9457d24db2a1b579e87f-file_1578972895649" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">  <span class="keyword">long</span> x = (<span class="keyword">long</span>) n;</span><br><span class="line">  <span class="keyword">return</span> (x &amp; (x - <span class="number">1</span>)) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##7.数组中的第K个最大元素</p>
+<p>在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。</p>
+<p>示例 1:</p>
+<p>输入: [3,2,1,5,6,4] 和 k = 2<br>输出: 5<br>示例 2:</p>
+<p>输入: [3,2,3,1,2,4,5,5,6] 和 k = 4<br>输出: 4</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">PriorityQueue&lt;Integer&gt; priorityQueue=<span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">          <span class="keyword">if</span> (priorityQueue.size()&lt;k)&#123;</span><br><span class="line">              priorityQueue.add(nums[i]);</span><br><span class="line">          &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="keyword">if</span> (priorityQueue.element()&lt;nums[i])&#123;</span><br><span class="line">                  priorityQueue.poll();</span><br><span class="line">                  priorityQueue.add(nums[i]);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> priorityQueue.poll();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过建立一个size为k的小顶堆获取第k大的值，用优先级队列模拟堆，因为它内部实现是堆。</p>
+<p>##8.两数相加</p>
+<p>难度中等</p>
+<p>给出两个 <strong>非空</strong> 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 <strong>逆序</strong> 的方式存储的，并且它们的每个节点只能存储 <strong>一位</strong> 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 &#x3D; 807</span><br></pre></td></tr></table></figure>
+
+<p>思路：通过从最低位开始相加，注意进位的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">       ListNode list,head;</span><br><span class="line">       list=head=<span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">       <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(temp!=<span class="number">0</span>||l1!=<span class="keyword">null</span>||l2!=<span class="keyword">null</span>)&#123; <span class="comment">//考虑到有进位</span></span><br><span class="line">           <span class="keyword">if</span>(l1!=<span class="keyword">null</span>)&#123;</span><br><span class="line">               temp+=l1.val;</span><br><span class="line">               l1=l1.next;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(l2!=<span class="keyword">null</span>)&#123;</span><br><span class="line">               temp+=l2.val;</span><br><span class="line">               l2=l2.next;</span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           list=list.next=<span class="keyword">new</span> ListNode(temp%<span class="number">10</span>);</span><br><span class="line">           temp/=<span class="number">10</span>;      </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> head.next;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>##9.岛屿</p>
+<p>##10.两数之和 II - 输入有序数组</p>
+<p>给定一个已按照<strong>升序排列</strong> 的有序数组，找到两个数使得它们相加之和等于目标数。</p>
+<p>函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2<em>。</em></p>
+<p><strong>说明:</strong></p>
+<ul>
+<li>返回的下标值（index1 和 index2）不是从零开始的。</li>
+<li>你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。</li>
+</ul>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: numbers &#x3D; [2, 7, 11, 15], target &#x3D; 9</span><br><span class="line">输出: [1,2]</span><br><span class="line">解释: 2 与 7 之和等于目标数 9 。因此 index1 &#x3D; 1, index2 &#x3D; 2 。</span><br></pre></td></tr></table></figure>
+
+<p>解析：与盛最多水的容器类似，利用双指针减治不断缩小筛选范围，当两指针的值小于target说明应该往指针增大的方向移动即i++，反之类似。题目比较简单，直接看代码吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] numbers, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="keyword">int</span> i=<span class="number">0</span>,j=numbers.length-<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">int</span> sum;</span><br><span class="line">       <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">           sum=numbers[i]+numbers[j];</span><br><span class="line">           <span class="keyword">if</span>(sum==target)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i+<span class="number">1</span>,j+<span class="number">1</span>&#125;;</span><br><span class="line">           <span class="keyword">if</span>(sum&lt;target)</span><br><span class="line">           i++;</span><br><span class="line">           <span class="keyword">else</span> j--;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>##11. 寻找重复数（2分，动态规划）</p>
+<p>给定一个包含 <em>n</em> + 1 个整数的数组 <em>nums*，其数字都在 1 到 *n</em> 之间（包括 1 和 <em>n</em>），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,3,4,2,2]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,1,3,4,2]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
 <ol>
-<li>在代码中直接new一个 View实例的时候调用第一个构造函数。</li>
-<li>在xml布局文件中调用View的时候,会调用第二个构造函数。</li>
-<li>第三个构造函数的调用,通常是我们自己在构造函数中主动调用的</li>
+<li><strong>不能</strong>更改原数组（假设数组是只读的）。<u></u></li>
+<li>只能使用额外的 <em>O</em>(1) 的空间。</li>
+<li>时间复杂度小于 <em>O</em>(<em>n</em>2) 。</li>
+<li>数组中只有一个重复的数字，但它可能不止重复出现一次。</li>
 </ol>
-<p><strong>注意因为我们是在xml布局文件中调用自定义view，所以我们要重写第二个构造函数 。</strong>传入attrs 改成 super(context,attrs);不然会获取不到这个view。接着调用自定义函数 init();进行初始化。</p>
-<p>  <strong>3.初始化画笔</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line">mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line">mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>*<u>==分析==</u>*</strong></p>
+<p>这道题要求我们查找的数是一个整数，并且给出了这个整数的范围（在 1和 n之间，包括 1 和 n），并且给出了一些限制，于是可以使用二分查找法定位在一个区间里的整数；</p>
+<p>二分法的思路是先猜一个数（有效范围 [left, right]里的中间数 mid），然后统计原始数组中小于等于这个中间数的元素的个数 cnt，如果 cnt <strong>严格大于</strong> mid。根据抽屉原理，重复元素就在区间 [left, mid] 里；</p>
+<p>以 [1, 2, 2, 3, 4, 5, 6, 7] 为例，一共 8 个数，n + 1 = 8，n = 7，根据题目意思，每个数都在 1 和 7 之间。</p>
+<p>例如：区间 [1, 7][1,7] 的中位数是 4，遍历整个数组，统计小于等于 4 的整数的个数，最多为 44 个，等于 44 的时候也可能有重复。但是，如果整个数组里小于等于 4 的整数的个数如果严格大于 44 个，就说明重复的数存在于区间 [1, 4][1,4]。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = nums.length;</span><br><span class="line">       <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">int</span> right = len - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">           <span class="comment">// 在 Java 里可以这么用，当 left + right 溢出的时候，无符号右移保证结果依然正确</span></span><br><span class="line">           <span class="keyword">int</span> mid = (left + right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">               <span class="keyword">if</span> (num &lt;= mid) &#123;</span><br><span class="line">                   cnt += <span class="number">1</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="comment">// 根据抽屉原理，小于等于 4 的个数如果严格大于 4 个</span></span><br><span class="line">           <span class="comment">// 此时重复元素一定出现在 [1, 4] 区间里</span></span><br><span class="line">           <span class="keyword">if</span> (cnt &gt; mid) &#123;</span><br><span class="line">               <span class="comment">// 重复元素位于区间 [left, mid]</span></span><br><span class="line">               right = mid;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="comment">// if 分析正确了以后，else 搜索的区间就是 if 的反面</span></span><br><span class="line">               <span class="comment">// [mid + 1, right]</span></span><br><span class="line">               left = mid + <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> left;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们画图需要两个工具纸和笔，在android中分别对应Paint和Canvas。需要Paint进行自定义view曲线的绘制</p>
-<p>在这里我们设置了画笔的属性颜色，宽度，填充风格</p>
-<p>其中Paint.Style.STROKE为仅描边</p>
-<p>Paint.Style.FILL 仅填充内部</p>
-<p>Paint.Style.FILLL_AND_STROKEN 填充内部和描边</p>
-<p><strong>4.监听滑动</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;&#x2F;&#x2F;监听滑动</span><br><span class="line">&#x2F;&#x2F;触摸按下时</span><br><span class="line">if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor&#x3D;mPathColor;</span><br><span class="line">            mPath&#x3D;new Path();</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: down&quot;);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            return true;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;触摸点移动时</span><br><span class="line">       else if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   int endX&#x3D;((int)event.getX()+mPreX)&#x2F;2;</span><br><span class="line">            int endY&#x3D;((int)event.getY()+mPreY)&#x2F;2;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);&#x2F;&#x2F;用贝济埃曲线</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: move&quot;);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return super.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>通过这个方法知道二分法还可以用于确定一个有范围的整数，不断缩小范围查找结果</strong></p>
+<p>##12.三步问题（动态规划）</p>
+<p>难度简单</p>
+<p>三步问题。有个小孩正在上楼梯，楼梯有n阶台阶，小孩一次可以上1阶、2阶或3阶。实现一种方法，计算小孩有多少种上楼梯的方式。结果可能很大，你需要对结果模1000000007。​</p>
+<p><strong>示例1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n &#x3D; 3 </span><br><span class="line">输出：4</span><br><span class="line">说明: 有四种走法</span><br></pre></td></tr></table></figure>
 
-<p>这里的Path是一个路径，你能用Canvas中的drawPath来把这条路径画出来这里用了两个list分别用来保存每条路径和路径的颜色。</p>
-<p>路径的始点用moveTo(); </p>
-<p>这里用了贝塞尔曲线使路径看起来比较平滑</p>
-<p>quadTo(float x1, float y1, float x2, float y2):</p>
-<p>x1，y1为控制点的坐标值，x2，y2为终点的坐标值；</p>
-<p>直接用lineTo连接点也行比较简单。</p>
-<p>postInvalidate是Android用来刷新界面的。调用了onDraw（）进行重新绘制。</p>
-<p>到这里画板的功能已经大部分完成了。再耐心点看下去</p>
-<p><strong>5.更换画笔颜色，清屏，撤销</strong></p>
-<p>这些比较简单就看下上面代码就行了</p>
-<p><strong>6.在活动显示这个自定义view</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.example.draw.view.DrawView</span><br><span class="line">    android:background&#x3D;&quot;@color&#x2F;white&quot;</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;drawview_draw_draw&quot;</span><br><span class="line">    android:layout_below&#x3D;&quot;@id&#x2F;re_draw_control&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>示例2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n &#x3D; 5</span><br><span class="line">输出：13</span><br></pre></td></tr></table></figure>
 
-<p>像这样直接在layout中加入即可</p>
-<p>使用时像其他控件一样使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mDrawView=findViewById(R.id.drawview_draw_draw);</span><br><span class="line">mDrawView.clear()</span><br><span class="line">mDrawView.lineWithdraw();</span><br><span class="line">mDrawView.setPaintColor(<span class="string">"#212121"</span>);</span><br></pre></td></tr></table></figure>
+<p> 输入：n = 3<br> 输出：4<br> 说明: 有四种走法<br>示例2:</p>
+<p> 输入：n = 5<br> 输出：13<br>提示:</p>
+<p>n范围在[1, 1000000]之间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">waysToStep</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(n&lt;=<span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">     <span class="keyword">int</span> dp[]=<span class="keyword">new</span> <span class="keyword">int</span> [n+<span class="number">1</span>];</span><br><span class="line">     dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">     dp[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">     dp[<span class="number">2</span>]=<span class="number">2</span>;</span><br><span class="line">     dp[<span class="number">3</span>]=<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">4</span>;i&lt;=n;i++)&#123;</span><br><span class="line">         dp[i]=(dp[i-<span class="number">1</span>]+(dp[i-<span class="number">2</span>]+dp[i-<span class="number">3</span>])%<span class="number">1000000007</span>)%<span class="number">1000000007</span>; </span><br><span class="line"><span class="comment">//这里注意使两数相加不会溢出为负数</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>这篇博客到这就结束了。第一次写不足之处，还望各位批评指正，和大家一起交流。觉得有帮助可以帮忙点个赞hhh。</p>
+<h2 id="13-最大自序和"><a href="#13-最大自序和" class="headerlink" title="13.最大自序和"></a>13.最大自序和</h2><p>难度简单</p>
+<p>给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [-2,1,-3,4,-1,2,1,-5,4],</span><br><span class="line">输出: 6</span><br><span class="line">解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums==<span class="keyword">null</span>||nums.length==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        <span class="keyword">int</span> max=nums[<span class="number">0</span>],sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (sum&lt;<span class="number">0</span>)  &#123; </span><br><span class="line">                sum=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            sum+=nums[i];</span><br><span class="line">            <span class="keyword">if</span> (max&lt;sum)</span><br><span class="line">                max=sum; &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br></pre></td></tr></table></figure>
+
+<p>因为求最大自序和，就相当于一个窗口移动，右边是小标i，左边根据原sum如果原来的值小于0那么应该舍弃，因为与小于0只会让sum更小</p>
+<h2 id="14-二维数组中的查找"><a href="#14-二维数组中的查找" class="headerlink" title="14.二维数组中的查找"></a>14.二维数组中的查找</h2><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>示例:</p>
+<p>现有矩阵 matrix 如下：</p>
+<p>[<br>  [1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]<br>]<br>给定 target = 5，返回 true。</p>
+<p>给定 target = 20，返回 false。</p>
+<p><strong>*<u>==分析==</u>*</strong></p>
+<pre><code>标志数引入： 此类矩阵中左下角和右上角元素有特殊性，称为标志数。</code></pre><p>左下角元素： 为所在列最大元素，所在行最小元素。<br>右上角元素： 为所在行最大元素，所在列最小元素。<br>标志数性质： 将 matrix 中的左下角元素（标志数）记作 flag ，则有:</p>
+<p>若 flag &gt; target ，则 target 一定在 flag 所在行的上方，即 flag 所在行可被消去。<br>若 flag &lt; target ，则 target 一定在 flag 所在列的右方，即 flag 所在列可被消去。<br>本题解以左下角元素为例，同理，右上角元素 也具有行（列）消去的性质。<br>算法流程： 根据以上性质，设计算法在每轮对比时消去一行（列）元素，以降低时间复杂度。</p>
+<p><strong>本质可以看成2叉查找树，一边大于一边小于。找出矩阵中相似的关系即标记数位置</strong></p>
+<p>从矩阵 matrix 左下角元素（索引设为 (i, j) ）开始遍历，并与目标值对比：<br>当 matrix[i][j] &gt; target 时： 行索引向上移动一格（即 i–），即消去矩阵第 i 行元素；<br>当 matrix[i][j] &lt; target 时： 列索引向右移动一格（即 j++），即消去矩阵第 j 列元素；<br>当 matrix[i][j] == target 时： 返回 truetrue 。<br>若行索引或列索引越界，则代表矩阵中无目标值，返回 falsefalse 。<br>算法本质： 每轮 i 或 j 移动后，相当于生成了“消去一行（列）的新矩阵”， 索引(i,j) 指向新矩阵的左下角元素（标志数），因此可重复使用以上性质消去行（列）。</p>
+<p>复杂度分析：<br>时间复杂度 O(M+N)O(M+N) ：其中，NN 和 MM 分别为矩阵行数和列数，此算法最多循环 M+NM+N 次。<br>空间复杂度 O(1)O(1) : i, j 指针使用常数大小额外空间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">findNumberIn2DArray</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> i=matrix.length-<span class="number">1</span>;</span><br><span class="line">     <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">     <span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;j&lt;matrix[<span class="number">0</span>].length)&#123;</span><br><span class="line">         <span class="keyword">if</span>(matrix[i][j]==target)&#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125; <span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">             i--;</span><br><span class="line">         &#125; <span class="keyword">else</span> j++;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>##15.寻找旋转排序数组中的最小值 II（2分）</p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。</p>
+<p>请找出其中最小的元素。</p>
+<p>注意数组中可能存在重复的元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,3,5]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,2,2,0,1]</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>==分析==</p>
+<p>本题与<em>在排序数组中查找数字</em> 这类问题很相似，而这类问题一般用 <strong>二分查找</strong> 来实现，直觉上这道题也可以用二分查找来解决。</p>
+<p>在传统的二分查找中，会将中轴元素(nums[pivot])与目标元素相比较。但在这个问题里面，需要将中轴元素与右边界元素(nums[high])相比较。</p>
+<p>二分查找算法的难点在于<strong>如何更新左右边界指针</strong>。（即怎么缩小范围）</p>
+<p>如下图所示，寻找旋转数组的最小元素即为寻找 右排序数组 的首个元素 numbers[x] ，称 x 为 旋转点 。</p>
+<p><img src="https://pic.leetcode-cn.com/5884538fb9541a31a807d59c81226ded3dcd61df66efcdeb000165036ea68bb9-Picture1.png" alt="Picture1.png"></p>
+<p>算法流程：<strong>（就是分成左右数组，通过2分找到x的位置。但注意左数组不一定存在，通过与右数组的比较不断缩小范围）</strong><br>循环二分： 设置 i, j指针分别指向 numbers 数组左右两端，可分为以下三种情况：<br>当 numbers[m] &gt; numbers[j]时： m一定在 左排序数组 中，即旋转点 x 一定在 [m + 1, j][m+1,j] 闭区间内，因此执行 i=m+1；<br>当 numbers[m] &lt; numbers[j] 时： m 一定在 右排序数组 中，即旋转点 x 一定在[i, m][i,m] 闭区间内，因此执行 j = m；<br>当 numbers[m] == numbers[j] 时： 无法判断 mm 在哪个排序数组中，即无法判断旋转点 x 在 [i, m][i,m] 还是 [m + 1, j][m+1,j] 区间中。解决方案： 执行 j = j - 1缩小判断范围， <strong>因为缩小范围最小值还是在这个范围内</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> right=nums.length-<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">           <span class="keyword">int</span> mid=(left+right)&gt;&gt;&gt;<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">if</span>(nums[mid]&gt;nums[right])</span><br><span class="line">            &#123;</span><br><span class="line">             left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;nums[right])&#123;</span><br><span class="line">                right=mid;</span><br><span class="line">                 &#125; <span class="keyword">else</span> right--;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> nums[right];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>思考：</p>
+<p> <strong>是否可以用 numbers[m] 和 numbers[i] 比较做代替？</strong><br>解析： 不可以。因为做比较的目的是判断 m 在哪个排序数组中。但在 numbers[m] &gt; numbers[i]情况下，无法判断 m 在哪个排序数组中。本质是因为 j 初始值肯定在右排序数组中； i 初始值无法确定在哪个排序数组中。<br>示例： 当 i = 0, j = 4, m = 2 时，有 numbers[m] &gt; numbers[i] ，以下两示例得出不同结果。<br>numbers = [1, 2, 3, 4 ,5]numbers=[1,2,3,4,5] 旋转点 x = 0： m 在右排序数组（此示例只有右排序数组）；<br>numbers = [3, 4, 5, 1 ,2]numbers=[3,4,5,1,2] 旋转点 x = 3 ： m 在左排序数组。<strong>简单点来说就是左排序数组不一定存在</strong></p>
+<p><strong>允许重复会影响算法的时间复杂度吗？会如何影响，为什么？</strong></p>
+<p>因为可能包含重复数字，在 nums[pivot] == nums[high] 分支下会导致最差时间复杂度为 O(N)。</p>
+<h2 id="16-位运算-二进制中1的个数"><a href="#16-位运算-二进制中1的个数" class="headerlink" title="16.位运算 二进制中1的个数"></a>16.位运算 <a href="https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/" target="_blank" rel="noopener">二进制中1的个数</a></h2><p>请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。例如，把 9 表示成二进制是 1001，有 2 位是 1。因此，如果输入 9，则该函数输出 2。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：00000000000000000000000000001011</span><br><span class="line">输出：3</span><br><span class="line">解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 &#39;1&#39;。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：00000000000000000000000010000000</span><br><span class="line">输出：1</span><br><span class="line">解释：输入的二进制串 00000000000000000000000010000000 中，共有一位为 &#39;1&#39;。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n&amp;=n-<span class="number">1</span>;<span class="comment">// 利用n&amp;=n-1不断消去最后的一位1;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>理解</strong>：因为n-1可以使最后一位1变0以及他左边的不变，右边的全为1。因为左边的不变原来的1&amp;1还是1,0&amp;0还是0，右边的因为原来的位全为0（因为是在最后一位1的左边）所以相&amp;还是0，变化的只有最后那位1变成0。</p>
+<h2 id="17-从尾到头打印链表"><a href="#17-从尾到头打印链表" class="headerlink" title="17.从尾到头打印链表"></a>17.从尾到头打印链表</h2><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head &#x3D; [1,3,2]</span><br><span class="line">输出：[2,3,1]</span><br></pre></td></tr></table></figure>
+
+<p> 1.利用栈后进先出进行倒序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int[] reversePrint(ListNode head) &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack&#x3D;new Stack();</span><br><span class="line">    int i&#x3D;0;</span><br><span class="line">    while (head!&#x3D;null)&#123;</span><br><span class="line">        stack.add(head.val);</span><br><span class="line">        head&#x3D;head.next;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    int numbers[]&#x3D;new int[stack.size()];</span><br><span class="line">    while (!stack.empty())&#123;</span><br><span class="line">        numbers[i++]&#x3D;stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">   return  numbers;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.利用递归返回</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; tmp = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] reversePrint(ListNode head) &#123;</span><br><span class="line">      recur(head);</span><br><span class="line">      <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[tmp.size()];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; res.length; i++)</span><br><span class="line">          res[i] = tmp.get(i);</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">recur</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">      recur(head.next);</span><br><span class="line">      tmp.add(head.val);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>##18. 剪绳子</p>
+<p>给你一根长度为 <code>n</code> 的绳子，请把绳子剪成整数长度的 <code>m</code> 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 <code>k[0],k[1]...k[m-1]</code> 。请问 <code>k[0]*k[1]*...*k[m-1]</code> 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2</span><br><span class="line">输出: 1</span><br><span class="line">解释: 2 &#x3D; 1 + 1, 1 × 1 &#x3D; 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: 36</span><br><span class="line">解释: 10 &#x3D; 3 + 3 + 4, 3 × 3 × 4 &#x3D; 36</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= n &lt;= 58</code></li>
+</ul>
+<p>解： 设长度为n的绳子分成a段：</p>
+<p>n=N1+N2+….+Na;</p>
+<p>以下公式为“算术几何均值不等式” ，等号当且仅当 n1 = n2 = … = na 时成立。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200630090312325.png" alt="image-20200630090312325"></p>
+<p><strong>推论一：</strong> 将绳子 <strong>以相等的长度等分为多段</strong> ，得到的乘积最大。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200630090423392.png" alt="image-20200630090423392"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">cuttingRope</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">3</span>) <span class="keyword">return</span> n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> a = n / <span class="number">3</span>, b = n % <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span>(b == <span class="number">0</span>) <span class="keyword">return</span> (<span class="keyword">int</span>)Math.pow(<span class="number">3</span>, a);</span><br><span class="line">        <span class="keyword">if</span>(b == <span class="number">1</span>) <span class="keyword">return</span> (<span class="keyword">int</span>)Math.pow(<span class="number">3</span>, a - <span class="number">1</span>) * <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)Math.pow(<span class="number">3</span>, a) * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##19.数值的整数次方</p>
+<p>难度中等43收藏分享切换为英文关注反馈</p>
+<p>实现函数double Power(double base, int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 2.00000, 10</span><br><span class="line">输出: 1024.00000</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 2.10000, 3</span><br><span class="line">输出: 9.26100</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2.00000, -2</span><br><span class="line">输出: 0.25000</span><br><span class="line">解释: 2-2 &#x3D; 1&#x2F;22 &#x3D; 1&#x2F;4 &#x3D; 0.25</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明:</strong></p>
+<ul>
+<li>-100.0 &lt; <em>x</em> &lt; 100.0</li>
+<li><em>n</em> 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。</li>
+</ul>
+<p>解析：两种方法</p>
+<ol>
+<li><p>从左向右二进制算法</p>
+<p> 左到右不断平方，如果当前位为1则额外乘一次。</p>
+</li>
+<li><p>从右向左二进制算法</p>
+<p>从左向右维护一个已经移动过位的幂，如果位为1则累乘。</p>
+</li>
+</ol>
+<p><strong>需要注意如果n为负数需要计算倒数值。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(n&lt;<span class="number">0</span>)</span><br><span class="line">      x=<span class="number">1</span>/x;</span><br><span class="line">      <span class="keyword">double</span> now=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">double</span> sum=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">while</span> (n!=<span class="number">0</span>)&#123;</span><br><span class="line">          <span class="keyword">if</span>((n&amp;<span class="number">1</span>)==<span class="number">1</span>)&#123;</span><br><span class="line">             </span><br><span class="line">              sum*=x;</span><br><span class="line">          &#125;</span><br><span class="line">           n/=<span class="number">2</span>;</span><br><span class="line">           x*=x;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> sum;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -313,7 +492,7 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/%E7%AE%97%E6%B3%95%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +506,18 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
   
 <nav id="article-nav">
   
-    <a href="/2020/07/13/Binder/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/13/%E9%9C%80%E6%B1%82%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Binder
+          需求文档
         
       </div>
     </a>
   
   
-    <a href="/2020/07/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2020/07/13/%E9%9D%A2%E7%BB%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面经</div>
       <i class="icon-circle-right"></i>
     </a>
   

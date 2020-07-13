@@ -152,84 +152,266 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-android自定义控件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-哈夫曼" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">android自定义控件</a>
+      <a class="article-title" href="/2020/07/13/%E5%93%88%E5%A4%AB%E6%9B%BC/">哈夫曼</a>
     </h1>
   
 
         
-        <a href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-07-13T00:04:02.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+        <a href="/2020/07/13/%E5%93%88%E5%A4%AB%E6%9B%BC/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:58.534Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="画板-自定义控件实现轨迹划线"><a href="#画板-自定义控件实现轨迹划线" class="headerlink" title="画板|自定义控件实现轨迹划线"></a>画板|自定义控件实现轨迹划线</h1><p>  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。</p>
-<p> 先上完整代码和效果</p>
-<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png" alt="1559554153617"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">     <span class="keyword">private</span> Path mPath;<span class="comment">//路径</span></span><br><span class="line">     <span class="keyword">private</span> Paint mLinePaint=<span class="keyword">new</span> Paint();<span class="comment">//路径画笔</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">float</span> mStokeWidth=<span class="number">8</span>;<span class="comment">// 画笔线的大小</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPathColor =    Color.parseColor(<span class="string">"#212121"</span>);<span class="comment">//画笔颜色</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreX;<span class="comment">//手指位置x</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreY;<span class="comment">//手指位置y</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mColor;</span><br><span class="line">     ArrayList&lt;Integer&gt; colors=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     ArrayList&lt;Path&gt; paths=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context,attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">         <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">  mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line"> mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line"> mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;<span class="comment">//监听滑动</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor=mPathColor;</span><br><span class="line">            mPath=<span class="keyword">new</span> Path();</span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: down"</span>);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   <span class="keyword">int</span> endX=((<span class="keyword">int</span>)event.getX()+mPreX)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> endY=((<span class="keyword">int</span>)event.getY()+mPreY)/<span class="number">2</span>;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);<span class="comment">//用贝济埃曲线</span></span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: move"</span>);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment">//更换画笔颜色</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPaintColor</span><span class="params">(String color</span></span></span><br><span class="line"><span class="function"><span class="params">       mPathColor=Color.parseColor(color)</span></span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">                           </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;paths.size();i++) &#123;</span><br><span class="line">    mLinePaint.setColor(colors.get(i));</span><br><span class="line">    canvas.drawPath(paths.get(i), mLinePaint);</span><br><span class="line">  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">   <span class="comment">// 清屏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        colors.clear();</span><br><span class="line">        paths.clear();</span><br><span class="line">        postInvalidate();</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">  <span class="comment">//撤销</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lineWithdraw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (paths.size()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        colors.remove(colors.size()-<span class="number">1</span>);</span><br><span class="line">        paths.remove(paths.size()-<span class="number">1</span>);</span><br><span class="line">        postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="哈夫曼"><a href="#哈夫曼" class="headerlink" title="哈夫曼"></a>哈夫曼</h1><h2 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h2><p>哈夫曼树（Huffman Tree）是<strong>在叶子结点和权重确定的情况下，带权路径长度最小的二叉树，也被称为最优二叉树。</strong>原则上，我们应该让权重小的叶子结点远离树根，权重大的叶子结点靠近树根。 （在哈夫曼编码中，可一利用这个特性生成最小长度的编码且无歧义性）</p>
+<p><strong><u>划重点</u></strong>：为啥会没有歧义性呢，因为每一个编码不能是其他编码的前缀。这是利用哈夫曼树中没有包含关系。因为一个字符就是一个叶子节点。叶子节点后面没有节点。所以每个节点路径上不会包含其他节点。所以自然不会有和前缀相同的编码</p>
+<p>###Example</p>
+<p><img src="E:%5C360MoveData%5CUsers%5C25475%5CDesktop%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200424153338.jpg" alt="微信图片_20200424153338"></p>
+<p><img src="E:%5C360MoveData%5CUsers%5C25475%5CDesktop%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200424153325.jpg" alt="微信图片_20200424153325"></p>
+<p>哈夫曼的通用算法就是不断从队列中取出两个最小的值合并加入到树中.</p>
+<p>##哈夫曼编码</p>
+<p>###编码意义</p>
+<p>计算机系统是如何存储信息的呢？</p>
+<p>计算机不是人，它不认识中文和英文，更不认识图片和视频，它唯一“认识”的就是0（低电平）和1（高电平）。</p>
+<p>因此，我们在计算机上看到的一切文字、图像、音频、视频，底层都是用二进制来存储和传输的。</p>
+<p>从狭义上来讲，把人类能看懂的各种信息，转换成计算机能够识别的二进制形式，被称为<strong>编码</strong>。</p>
+<p>###编码方式比较</p>
+<p>编码的方式可以有很多种，我们大家最熟悉的编码方式就属ASCII码了。每个为八位，显然，ASCII码是一种<strong>等长编码</strong>，也就是任何字符的编码长度都相等。<strong>优点</strong>：容易设计读写方便。<strong>缺点</strong>：浪费资源。</p>
+<p>所以需要设计一种不定长编码，但要注意不能出现歧义。所以<strong>1.任何一个字符编码，都不是其他字符编码的前缀。</strong>2.信息编码的总长度最小。</p>
+<h3 id="哈夫曼编码实现"><a href="#哈夫曼编码实现" class="headerlink" title="哈夫曼编码实现"></a>哈夫曼编码实现</h3><p>哈夫曼树的每一个结点包括左、右两个分支，二进制的每一位有0、1两种状态，我们可以把这两者对应起来，结点的左分支当做0，结点的右分支当做1，这样一来，从哈夫曼树的根结点到每一个叶子结点的路径，都可以等价为一段二进制编码。</p>
+<p><strong>这样生成的编码有没有前缀问题带来的歧义呢？</strong>答案是没有歧义。</p>
+<p>因为每一个字符对应的都是哈夫曼树的<strong>叶子结点</strong>，从根结点到这些叶子结点的路径并没有包含关系，最终得到的二进制编码自然也不会是彼此的前缀。</p>
+<p><strong>这样生成的编码能保证总长度最小吗？</strong>答案是可以保证。</p>
+<p>哈夫曼树的重要特性，就是所有叶子结点的（权重 X 路径长度）之和最小。</p>
+<p>放在信息编码的场景下，叶子结点的权重对应字符出现的频次，结点的路径长度对应字符的编码长度。</p>
+<p>所有字符的（频次 X 编码长度）之和最小，自然就说明总的编码长度最小。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587715601096.png" alt="1587715601096"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587715619912.png" alt="1587715619912"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587715644162.png" alt="1587715644162"></p>
 
-<p> <strong>1. 新建一个类继承自View</strong></p>
-<pre><code>public class DrawView extends View {
-   public DrawView(Context context) {
-        super(context);
-}
+      
 
-public DrawView(Context context, AttributeSet attrs)
-{
-    super(context,attrs);
-    init();
-}
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-public DrawView(Context context, AttributeSet attrs, int defStyle)
-{
-     super(context);
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/%E5%93%88%E5%A4%AB%E6%9B%BC/">展开全文 >></a>
+        </p>
+      
 
-}</code></pre><p>   <strong>2. 重写构造函数</strong></p>
-<p> view的构造函数有如上三个</p>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Thread" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Thread/">Thread</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Thread/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:58.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#Thread</p>
+<p>线程（英语：Thread）是操作系统能够进行<strong>运算调度</strong>的最小单位。它被包含在进程之中，是进程中的<strong>实际运作单位</strong>。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
+<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a><strong>线程的状态</strong></h2><p><img src="E:%5C360MoveData%5CUsers%5C25475%5CDesktop%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200423223639.jpg" alt="微信图片_20200423223639"></p>
+<ul>
+<li>NEW：线程刚创建</li>
+<li>RUNNABLE: 在JVM中正在运行的线程，其中运行状态可以有运行中RUNNING和READY两种状态，由系统调度进行状态改变。</li>
+<li>BLOCKED：线程处于阻塞状态，等待监视锁，可以重新进行同步代码块中执行</li>
+<li>WAITING : 等待状态</li>
+<li>TIMED_WAITING: 调用sleep() join() wait()方法可能导致线程处于等待状态</li>
+<li>TERMINATED: 线程执行完毕，已经退出</li>
+</ul>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><h3 id="Notify和Wait"><a href="#Notify和Wait" class="headerlink" title="Notify和Wait"></a>Notify和Wait</h3><p><strong>Notify</strong>：唤醒一个正在等待这个<strong>对象的线程监控</strong>。如果有任何线程正在等待这个对象，那么它们中的一个被选择被唤醒。选择是任意的，发生在执行的酌情权。一个线程等待一个对象通过调用一个 wait()方法进行监视。</p>
+<p>Notify()需要在同步方法或同步块中调用，即在调用前，线程也必须获得该对象的<strong>对象级别锁</strong></p>
+<p>Wait：导致当前线程等待，直到另一个线程调用notify()方法或notifyAll()方法。</p>
+<p>换句话说，这个方法的行为就像它简单一样执行调用wait(0)。当前线程必须拥有该对象的监视器。</p>
+<p>线程释放此监视器的所有权，并等待另一个线程通知等待该对象的监视器的线程，唤醒通过调用{@code notify}方法或{@code notifyAll}方法。然后线程等待，直到它可以重新取得监视器的所有权，然后继续执行。</p>
+<p>Wait()的作用是使当前执行代码的线程进行等待，它是Object类的方法，该方法用来将当前线程置入<strong>预执行队列</strong>中，并且在Wait所在的代码行处停止执行，直到接到通知或被中断为止。</p>
+<p>在调用Wait方法之前，线程必须获得该对象的对象级别锁，即只能在同步方法或同步块中调用Wait方法。</p>
+<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while (isAlive()) &#123;    wait(0);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>内部通过调用wait()实现。a线程在b线程调用会使a执行完在执行b。（前提a线程是可运行状态</p>
+<p>###Wait和Sleep的区别：</p>
+<ul>
+<li>它们最大本质的区别是，Sleep()不释放同步锁，Wait()释放同步锁。</li>
+<li>还有用法的上的不同是：Sleep(milliseconds)可以用时间指定来使他自动醒过来，如果时间不到你只能调用Interreput()来强行打断；Wait()可以用Notify()直接唤起。</li>
+<li>这两个方法来自不同的类分别是Thread和Object</li>
+<li>最主要是Sleep方法没有释放锁，而Wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
+</ul>
+<p>###Sleep() 和Yield()的异同</p>
+<ul>
+<li>相同 ：Sleep()和yield()都会释放CPU。</li>
+<li>不同：Sleep()使当前线程进入停滞状态，所以执行Sleep()的线程在指定的时间内肯定不会执行；yield()只是使当前线程重新回到可执行状态，所以执行yield()的线程有可能在进入到可执行状态后马上又被执行。Sleep()可使优先级低的线程得到执行的机会，当然也可以让同优先级和高优先级的线程有执行的机会；yield()只能使同优先级的线程有执行的机会。</li>
+</ul>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>指两个或两个以上的进程（或线程）在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。</p>
+<p>死锁产生的四个必要条件（缺一不可）：</p>
+<ul>
+<li>互斥条件：顾名思义，线程对资源的访问是排他性，当该线程释放资源后下一线程才可进行占用。</li>
+<li>请求和保持：简单来说就是自己拿的不放手又等待新的资源到手。线程T1至少已经保持了一个资源R1占用,但又提出对另一个资源R2请求，而此时，资源R2被其他线程T2占用，于是该线程T1也必须等待，但又对自己保持的资源R1不释放。</li>
+<li>不可剥夺：在没有使用完资源时，其他线性不能进行剥夺。</li>
+<li>循环等待：一直等待对方线程释放资源。</li>
+</ul>
+<p>我们可以根据死锁的四个必要条件破坏死锁的形成。</p>
+<h2 id="并发和并行的区别"><a href="#并发和并行的区别" class="headerlink" title="并发和并行的区别"></a><strong>并发和并行的区别</strong></h2><p>并发：是指在某个时间段内，多任务交替的执行任务。当有多个线程在操作时，把CPU运行时间划分成若干个时间段,再将时间段分配给各个线程执行。在一个时间段的线程代码运行时，其它线程处于挂起状。</p>
+<p>并行：是指同一时刻同时处理多任务的能力。当有多个线程在操作时，CPU同时处理这些线程请求的能力。</p>
+<p>区别就在于CPU是否能同时处理所有任务，并发不能，并行能。</p>
+<h2 id="线程安全三要素"><a href="#线程安全三要素" class="headerlink" title="线程安全三要素"></a><strong>线程安全三要素</strong></h2><ul>
+<li>原子性：Atomic包、CAS算法、Synchronized、Lock。</li>
+<li>可见性：Synchronized、Volatile（不能保证原子性）。</li>
+<li>有序性：Happens-before规则。</li>
+</ul>
+<h2 id="如何实现线程安全"><a href="#如何实现线程安全" class="headerlink" title="如何实现线程安全"></a><strong>如何实现线程安全</strong></h2><ul>
+<li>互斥同步：Synchronized、Lock。</li>
+<li>非阻塞同步：CAS。</li>
+<li>无需同步的方案：如果一个方法本来就不涉及共享数据，那它自然就无需任何同步操作去保证正确性。</li>
+</ul>
+<p>##<strong>保证线程安全的机制：</strong></p>
+<ul>
+<li>Synchronized关键字</li>
+<li>Lock</li>
+<li>CAS、原子变量</li>
+<li>ThreadLocal：简单来说就是让每个线程，对同一个变量，都有自己的独有副本，每个线程实际访问的对象都是自己的，自然也就不存在线程安全问题了。</li>
+<li>Volatile</li>
+<li>CopyOnWrite写时复制</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/Thread/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Synchronized" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Synchronized/">Synchronized</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Synchronized/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:58.523Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h1><p>在jdk1.6之前，synchronized是基于底层操作系统的<strong>Mutex Lock</strong>实现的，每次获取和释放锁都会带来<strong>用户态和内核态的切换</strong>，从而增加系统的<strong>性能开销</strong>。在锁竞争激烈的情况下，synchronized同步锁的性能很糟糕。<strong>JDK 1.6</strong>，Java对synchronized同步锁做了<strong>充分的优化</strong>，甚至在某些场景下，它的性能已经超越了Lock同步锁</p>
+<h2 id="synchronized实现原理"><a href="#synchronized实现原理" class="headerlink" title="synchronized实现原理"></a>synchronized实现原理</h2><p>synchronized 在 JVM 的实现原理是基于进入和退出管程(Monitor)对象来实现同步。但 synchronized 关键字实现同步代码块和同步方法的细节不一样，代码块同步是使用 monitorenter 和 monitorexit 指令实现的，方法同步通过调用指令读取运行时常量池中方法的 ACC_SYNCHRONIZED flags 标志来隐式实现的。</p>
+<p>###Java对象头</p>
+<p>在JVM中，对象在内存中的布局分为三块区域：对象头、实例数据和对齐填充。</p>
+<ul>
+<li>实例变量：存放类的属性数据信息，包括父类的属性信息，如果是数组的实例部分还包括数组的长度，这部分内存按4字节对齐。</li>
+<li>填充数据：由于虚拟机要求对象起始地址必须是8字节的整数倍。填充数据不是必须存在的，仅仅是为了字节对齐。</li>
+</ul>
+<p>Java对象头是synchronized实现的关键，synchronized用的锁是存在Java对象头里的。jvm中采用2个字宽（一个字宽代表4个字节，一个字节8bit）来存储对象头(如果对象是数组则会分配3个字宽，多出来的1个字宽记录的是数组长度)。其主要结构是由 Mark Word 和 Class Metadata Address 组成。</p>
+<ul>
+<li>Mark Word：默认存储对象的 hashCode，分代年龄，锁类型，锁标志位等信息，是实现轻量级锁和偏向锁的关键</li>
+<li>Class Metadata Address：类型指针指向对象的类元数据，JVM 通过这个指针确定该对象是哪个类的数据</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/6/1714e3c8c13a7ae7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<h3 id="synchronized同步的底层实现"><a href="#synchronized同步的底层实现" class="headerlink" title="synchronized同步的底层实现"></a>synchronized同步的底层实现</h3><p> JVM 基于进入和退出 Monitor 对象来实现方法同步和代码块同步。</p>
+<p>Monitor（监视器锁）本质是依赖于底层的操作系统的 Mutex Lock（互斥锁）来实现的。Mutex Lock 的切换需要从用户态转换到核心态中，因此状态转换需要耗费很多的处理器时间。所以synchronized是Java语言中的一个重量级操作。</p>
+<p>###同步过程（锁升级过程）</p>
+<p>上面讲解了，synchronized 在开始的时候是依靠操作系统的互斥锁来实现的，是个重量级操作，为了减少获得锁和释放锁带来的性能消耗，在 JDK 1.6中，引入了偏向锁和轻量级锁。锁一共有4中状态：无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态，这几种状态会随着竞争情况逐渐升级，但不能降级，目的是为了提高锁和释放锁的效率。</p>
+<h4 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h4><p>大部分情况下，锁不存在多线程竞争，偏向锁就是为了在只有一个线程执行同步块时提高性能。</p>
+<p>偏向锁的核心思想是，如果一个线程获得了锁，那么锁就进入偏向模式，此时Mark Word 的结构也变为偏向锁结构，当这个线程再次请求锁时，无需再做任何同步操作，即获取锁的过程，这样就省去了大量有关锁申请的操作，从而也就提供程序的性能。</p>
+<p>获得过程：</p>
 <ol>
-<li>在代码中直接new一个 View实例的时候调用第一个构造函数。</li>
-<li>在xml布局文件中调用View的时候,会调用第二个构造函数。</li>
-<li>第三个构造函数的调用,通常是我们自己在构造函数中主动调用的</li>
+<li>访问Mark Word中偏向锁的标识是否设置成1，锁标志位是否为 01——确认为可偏向状态。</li>
+<li>如果为偏向状态，则测试 Thread ID 是否指向当前线程，如果是，执行同步代码。</li>
+<li>如果不是指向当前线程。当到达全局安全点（safepoint，在这个时间点上没有正在执行的字节码）时，会首先暂停拥有偏向锁的线程，然后检查持有偏向锁的线程是否活着（<strong>因为可能持有偏向锁的线程已经执行完毕，但是该线程并不会主动去释放偏向锁</strong>）。</li>
+<li>如果线程不处于活动状态，则将对象头设置成无锁状态（标志位为“01”），然后重新偏向新的线程；如果线程仍然活着，撤销偏向锁后升级到轻量级锁状态（标志位为“00”），此时轻量级锁由原持有偏向锁的线程持有，继续执行其同步代码，而正在竞争的线程会进入自旋等待获得该轻量级锁。</li>
 </ol>
-<p><strong>注意因为我们是在xml布局文件中调用自定义view，所以我们要重写第二个构造函数 。</strong>传入attrs 改成 super(context,attrs);不然会获取不到这个view。接着调用自定义函数 init();进行初始化。</p>
-<p>  <strong>3.初始化画笔</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line">mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line">mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们画图需要两个工具纸和笔，在android中分别对应Paint和Canvas。需要Paint进行自定义view曲线的绘制</p>
-<p>在这里我们设置了画笔的属性颜色，宽度，填充风格</p>
-<p>其中Paint.Style.STROKE为仅描边</p>
-<p>Paint.Style.FILL 仅填充内部</p>
-<p>Paint.Style.FILLL_AND_STROKEN 填充内部和描边</p>
-<p><strong>4.监听滑动</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;&#x2F;&#x2F;监听滑动</span><br><span class="line">&#x2F;&#x2F;触摸按下时</span><br><span class="line">if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor&#x3D;mPathColor;</span><br><span class="line">            mPath&#x3D;new Path();</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: down&quot;);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            return true;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;触摸点移动时</span><br><span class="line">       else if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   int endX&#x3D;((int)event.getX()+mPreX)&#x2F;2;</span><br><span class="line">            int endY&#x3D;((int)event.getY()+mPreY)&#x2F;2;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);&#x2F;&#x2F;用贝济埃曲线</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: move&quot;);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return super.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的Path是一个路径，你能用Canvas中的drawPath来把这条路径画出来这里用了两个list分别用来保存每条路径和路径的颜色。</p>
-<p>路径的始点用moveTo(); </p>
-<p>这里用了贝塞尔曲线使路径看起来比较平滑</p>
-<p>quadTo(float x1, float y1, float x2, float y2):</p>
-<p>x1，y1为控制点的坐标值，x2，y2为终点的坐标值；</p>
-<p>直接用lineTo连接点也行比较简单。</p>
-<p>postInvalidate是Android用来刷新界面的。调用了onDraw（）进行重新绘制。</p>
-<p>到这里画板的功能已经大部分完成了。再耐心点看下去</p>
-<p><strong>5.更换画笔颜色，清屏，撤销</strong></p>
-<p>这些比较简单就看下上面代码就行了</p>
-<p><strong>6.在活动显示这个自定义view</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.example.draw.view.DrawView</span><br><span class="line">    android:background&#x3D;&quot;@color&#x2F;white&quot;</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;drawview_draw_draw&quot;</span><br><span class="line">    android:layout_below&#x3D;&quot;@id&#x2F;re_draw_control&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>像这样直接在layout中加入即可</p>
-<p>使用时像其他控件一样使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mDrawView=findViewById(R.id.drawview_draw_draw);</span><br><span class="line">mDrawView.clear()</span><br><span class="line">mDrawView.lineWithdraw();</span><br><span class="line">mDrawView.setPaintColor(<span class="string">"#212121"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这篇博客到这就结束了。第一次写不足之处，还望各位批评指正，和大家一起交流。觉得有帮助可以帮忙点个赞hhh。</p>
 
       
 
@@ -242,7 +424,7 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/13/Synchronized/">展开全文 >></a>
         </p>
       
 
@@ -272,39 +454,60 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/13/hello-world/">Hello World</a>
+      <a class="article-title" href="/2020/07/13/java%E5%BC%82%E5%B8%B8/">java异常</a>
     </h1>
   
 
         
-        <a href="/2020/07/13/hello-world/" class="archive-article-date">
-  	<time datetime="2020-07-12T16:21:05.714Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+        <a href="/2020/07/13/java%E5%BC%82%E5%B8%B8/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:58.516Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="java异常"><a href="#java异常" class="headerlink" title="java异常"></a>java异常</h1><p>异常：在Java语言中，将程序执行中发生的不正常情况称为“异常”。（开发过程中的语法错误和逻辑错误不是异常）</p>
+<h2 id="异常体系"><a href="#异常体系" class="headerlink" title="异常体系"></a>异常体系</h2><p>Java程序在执行过程中所发生的异常事件可分为两类：</p>
+<ol>
+<li><p>Error：Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。比如：StackOverflowError和OOM。一般不编写针对性的代码进行处理。</p>
+</li>
+<li><p>Exception：其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。例如：</p>
+</li>
+<li><ul>
+<li>空指针访问</li>
+<li>试图读取不存在的文件</li>
+<li>网络连接中断</li>
+<li>数组角标越界</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">异常的体系结构</span><br><span class="line"> * java.lang.Throwable</span><br><span class="line"> * 		|-----java.lang.Error:一般不编写针对性的代码进行处理。</span><br><span class="line"> * 		|-----java.lang.Exception:可以进行异常的处理</span><br><span class="line"> * 			|------编译时异常(checked)不会生成字节码文件(受查异常)</span><br><span class="line"> * 					|-----IOException</span><br><span class="line"> * 						|-----FileNotFoundException</span><br><span class="line"> * 					|-----ClassNotFoundException</span><br><span class="line"> * 			|------运行时异常(unchecked,RuntimeException)</span><br><span class="line"> * 					|-----NullPointerException<span class="comment">//空指针异常</span></span><br><span class="line"> * 					|-----ArrayIndexOutOfBoundsException<span class="comment">//数组角标越界</span></span><br><span class="line"> * 					|-----ClassCastException<span class="comment">//类型转化异常</span></span><br><span class="line"> * 					|-----NumberFormatException<span class="comment">//编码格式异常</span></span><br><span class="line"> * 					|-----InputMismatchException<span class="comment">//输入不匹配</span></span><br><span class="line"> * 					|-----ArithmeticException<span class="comment">//算术异常</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p> 按照异常发生的时间可以分为两类</p>
+<ol>
+<li>运行时异常：执行javac.exe命名时，可能出现的异常 是指编译器不要求强制处置的异常。一般是指编程时的逻辑错误，是程序员应该积极避免其出现的异常。java. lang. Runtime Exception类及它的子类都是运行时异常。对于这类异常，可以不作处理，因为这类异常很普遍，若全处理可能会对程序的可读性和运行效率产生影响</li>
+<li>编译时异常：执行java.exe命名时，出现的异常 是指编译器要求必须处置的异常。即程序在运行时由于外界因素造成的一般性异常。编译器要求Java程序==必须捕获或声明所有编译时异常== 对于这类异常，如果程序不处理，可能会带来意想不到的结果。</li>
+</ol>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ol>
+<li>catch中的异常类型如果没子父类关系，则谁声明在上，谁声明在下无所谓。catch中的异常类型如果满足子父类关系，则要求子类一定声明在父类的上面。否则，报错</li>
+<li>像数据库连接、输入输出流、网络编程Socket等资源，JVM是不能自动的回收的，我们需要自己手动的进行资源的释放。此时的资源释放，就需要声明在finally中。</li>
+<li>finally中声明的是一定会被执行的代码。即使catch中又出现异常了，try中return语句，catch中return语句等情况。</li>
+<li>如果父类中被重写的方法没throws方式处理异常，则子类重写的方法也不能使用throws，意味着如果子类重写的方法中异常，必须使用try-catch-finally方式处理。</li>
+</ol>
+<p>throw 和 throws区别：throw 表示抛出一个异常类的对象，生成异常对象的过程。声明在方法体内。throws 属于异常处理的一种方式，声明在方法的声明处。</p>
+<h2 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h2><ol>
+<li>继承于现的异常结构：RuntimeException 、Exception</li>
+<li>提供全局常量：serialVersionUID（对类的唯一标识）</li>
+<li>提供重载的构造器</li>
+</ol>
 
       
 
@@ -317,7 +520,7 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/13/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/13/java%E5%BC%82%E5%B8%B8/">展开全文 >></a>
         </p>
       
 
@@ -347,6 +550,484 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
 
 
   
+    <article id="post-CountDownLatch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/CountDownLatch/">CountDownLatch</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/CountDownLatch/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:58.507Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#CountDownLatch</p>
+<ul>
+<li><p>countDownLatch这个类使一个线程等待其他线程各自执行完毕后再执行。</p>
+</li>
+<li><p>是通过一个计数器来实现的，计数器的初始值是线程的数量。每当一个线程执行完毕后，计数器的值就-1，当计数器的值为0时，表示所有线程都执行完毕，然后在闭锁上等待的线程就可以恢复工作了。</p>
+</li>
+</ul>
+<p>调用join方法需要等待thread执行完毕才能继续向下执行,而CountDownLatch只需要检查计数器的值为零就可以继续向下执行，相比之下，CountDownLatch更加灵活一些，可以实现一些更加复杂的业务场景。（比如在执行到某个时刻可以执行）</p>
+<p>##方法</p>
+<ul>
+<li>类中有三个方法是最重要的：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用await()方法的线程会被挂起，它会等待直到count值为0才继续执行</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">await</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123; &#125;;   </span><br><span class="line"><span class="comment">//和await()类似，只不过等待一定的时间后count值还没变为0的话就会继续执行</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">await</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException </span>&#123; &#125;;  </span><br><span class="line"><span class="comment">//将count值减1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span> </span>&#123; &#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/CountDownLatch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Service" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Service/">Service</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Service/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:26.659Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h1><p>Service要在AndManifest文件注册</p>
+<p>IntentService的onDestory执行为里面的Thread即所有启动服务的onHandleIntent执行完成。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1583934175104.png" alt="1583934175104"></p>
+<p>IntentService在onStartCommand调用onStart发送message到Handler </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/Service/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-HandlerThread" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/HandlerThread/">HandlerThread</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/HandlerThread/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:26.657Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HandlerThread"><a href="#HandlerThread" class="headerlink" title="HandlerThread"></a>HandlerThread</h1><p><img src="https://upload-images.jianshu.io/upload_images/944365-b234918bcc41dd03.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt="img"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/HandlerThread/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Canvas使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Canvas%E4%BD%BF%E7%94%A8/">Canvas使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Canvas%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:26.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Canvas使用"><a href="#Canvas使用" class="headerlink" title="Canvas使用"></a>Canvas使用</h1><p>onSizeChanged() 在控件大小发生改变时调用。所以这里初始化会被调用一次</p>
+<p>##save()和restore()</p>
+<p>canvas.save();</p>
+<p>画布将当前的状态保存</p>
+<p>canvas.restore();</p>
+<p>画布取出原来所保存的状态</p>
+<p>理解就是将画布的保存和恢复.比如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">canvas.drawBitmap</span><br><span class="line">  (bitmap, <span class="number">0</span> , <span class="number">0</span> , paint);</span><br><span class="line">        <span class="comment">//保存画布状态</span></span><br><span class="line">canvas.save();</span><br><span class="line">        <span class="comment">//旋转45</span></span><br><span class="line">canvas.rotate</span><br><span class="line">        (<span class="number">45</span> , getWidth()/<span class="number">2</span> , getHeight()/<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//第二张</span></span><br><span class="line">canvas.drawBitmap</span><br><span class="line">        (bitmap, getWidth()/<span class="number">2</span>- bitmap.getWidth()/<span class="number">2</span> , getHeight()/<span class="number">2</span>- bitmap.getHeight()/<span class="number">2</span> , paint);</span><br><span class="line">        <span class="comment">//取出原来保存的状态</span></span><br><span class="line">canvas.restore();</span><br><span class="line">canvas.drawBitmap</span><br><span class="line">        (bitmap, <span class="number">0</span> , getHeight()- bitmap.getHeight() , paint);</span><br></pre></td></tr></table></figure>
+
+<p>可以保存旋转前的画布，restore（）恢复</p>
+<h2 id="drawBitmap"><a href="#drawBitmap" class="headerlink" title="drawBitmap()"></a>drawBitmap()</h2><p><strong>public void drawBitmap(Bitmap bitmap, float left, float top,  Paint paint)</strong></p>
+<p>第一个参数为要绘制的bitmap对象，第二个参数为图片左上角的x坐标值，第三个参数为图片左上角的y坐标的值，第三个参数为Paint对象。</p>
+<p><strong>public void drawBitmap(Bitmap bitmap, Rect src, RectF dst,Paint paint)</strong></p>
+<p>第一个参数为要绘制的bitmap对象，第二个参数为要绘制的Bitmap对象的矩形区域，第三个参数为要将bitmap绘制在屏幕的什么地方，第四个参数为Paint对象。</p>
+<p>RectF（）和Rect（）区别为前者为浮点数值</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/Canvas%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/%E6%B3%A8%E8%A7%A3/">注解</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:26.652Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>注解就是像注释一样在程序中的特殊标注不影响所编写的原有代码的执行。而这种标注(注解)可以被编码用的IDE、编译器、类加载器的代理程序、其他第三方工具以及原有代码运行期间读取和处理，生成一些新的辅助代码或是提示，从而节省时间，提升效率。Annontation像一种修饰符一样，应用于包、类型、构造方法、方法、成员变量、参数及本地变量的声明语句中。</p>
+<h2 id="注解种类"><a href="#注解种类" class="headerlink" title="注解种类"></a>注解种类</h2><h3 id="标准注解"><a href="#标准注解" class="headerlink" title="标准注解"></a>标准注解</h3><p>####@Override</p>
+<p>用于提示子类要复写父类中被 @Override 修饰的方法，它说明了被标注的方法重载了父类的方法，起到了断言的作用。如果我们使用了这种注解在一个没有覆盖父类方法的方法时，java编译器将以一个编译错误来警示。</p>
+<h4 id="Deprecated"><a href="#Deprecated" class="headerlink" title="@Deprecated"></a>@Deprecated</h4><p><strong>@Deprecated</strong> 也是一个标记类型注解，用于标记过时的元素。比如如果开发人员正在调用一个过时的方法、类或成员变量时，可以用该注解进行标注。</p>
+<p>####@SuppresWarninngs</p>
+<p><strong>@SuppressWarnings 并不是一个标记类型注解，它可以阻止警告的提示</strong>。它有一个类型为 String[] 的成员，其值为被禁止的警告名。</p>
+<p>####@SafeVarargs</p>
+<p><strong>@SafeVarargs</strong> 是一个参数安全类型注解。它的目的是提醒开发人员，不要用参数做一些不安全的操作。它的存在会阻止编译器产生 unchecked 的警告。用于final或者static或者构造器</p>
+<h3 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h3><p><strong>元注解是可以注解到注解上的注解</strong>，基本的元标签有 @Retention, @Documented, @Target, @Inherited 四种（后来到了 Java 8 又加入了 @Repeatable）。</p>
+<p>####@Retention</p>
+<p>@Retention 定义了该注解的生命周期。当 @Retention 应用到一个注解上的时候，作用就是说明这个注解的存活时间。</p>
+<h4 id="Target"><a href="#Target" class="headerlink" title="@Target"></a>@Target</h4><p>@Target 表示该注解用于什么地方，可以理解为：当一个注解被 @Target 注解时，这个注解就被限定了运用的场景。可以使用的 ElementType 参数：</p>
+<ul>
+<li><strong>ElementType.CONSTRUCTOR</strong>: 对构造方法进行注解；</li>
+<li><strong>ElementType.ANNOTATION_TYPE</strong>: 对注解进行注解；</li>
+<li><strong>ElementType.FIELD</strong>: 对属性、成员变量、成员对象（包括 enum 实例）进行注解；</li>
+<li><strong>ElementType.LOCAL_VARIABLE</strong>: 对局部变量进行注解；</li>
+<li><strong>ElementType.METHOD</strong>: 对方法进行注解；</li>
+<li><strong>ElementType.PACKAGE</strong>: 对包进行注解；</li>
+<li><strong>ElementType.PARAMETER</strong>: 对描述参数进行注解；</li>
+<li><strong>ElementType.TYPE</strong>: 对类、接口、枚举进行注解；</li>
+</ul>
+<h4 id="Documented"><a href="#Documented" class="headerlink" title="@Documented"></a>@Documented</h4><p>@Documented 是一个简单的标记注解，表示是否将注解信息添加在 Java 文档，即 Javadoc 中</p>
+<h4 id="Inherited"><a href="#Inherited" class="headerlink" title="@Inherited"></a>@Inherited</h4><p>Inherited 是指继承。如果一个超类带有 @Inherited 注解，那么这个子类就继承了超类的注解。</p>
+<p>####@Repeatable</p>
+<p>@Repeatable 是 Java 8 中加入的，是指可重复的意思。通常使用 @Repeatable 的时候指<strong>注解的值可以同时取多个</strong>。@Repeatable括号内的就相当于用来保存该注解内容的容器。获取类的注解时会转成括号内的注解</p>
+<p>括号内的注解必须要有被注解的注解数组 命名为value.获取到括号内的注解时通过.value获取被注解数组</p>
+<h2 id="注解生命周期"><a href="#注解生命周期" class="headerlink" title="注解生命周期"></a>注解生命周期</h2><p>注解的生命周期就是其“存在寿命”，分为三种</p>
+<p>###源码时注解 RetentionPolicy.SOURCE</p>
+<p>即注解只出现在 <strong>.java</strong> 文件中，编译后便不再出现在生成的<strong>.class</strong> 文件中，这一阶段，对注解的处理有两种方式： </p>
+<ul>
+<li>被IDE中的代码检测工具读取，实时地提示程序员缩写代码中的错误，例如 @Override 注解就是用来检查程序员所复写的父类方法的签名一致性的；</li>
+<li>在原代码<strong>编译期间</strong>被程序员在编译器中所注册的<strong>注解处理器</strong>所读取，用于生成新的源代码文件参与编译，省去重复地书写样板代码的成本，提升效率，编译之后便被去除，不再出现在 <strong>.class</strong> 文件中 ；</li>
+</ul>
+<p>###字节码时注解 RetentionPolicy.CLASS</p>
+<p>即出现在 <strong>.class</strong> 文件中的注解，对这类注解的处理主要涉及字节码的修改，需要使用ASM（ASM 库是一款基于 Java 字节码层面的代码分析和修改工具。ASM 可以直接生产二进制的 class 文件，也可以在类被加载入 JVM 之前动态修改类行为。）等类库，根据处理时机的不同，也可分为两种方式：</p>
+<ul>
+<li><strong>在源代码编译后处理</strong>：如果当前工程采用了Gradle、Maven等构建工具来构建，则在源代码被编译为 <strong>.class</strong> 文件后，可以通过相应地脚本调用使用了ASM库编写的第三方工具来读取文件中的注解并修改 <strong>.class</strong> 文件中的虚拟机指令，没有采用构建工具，也可以通过命令行来手动更新 <strong>.class</strong> 文件，虚拟机加载<strong>.class</strong> 文件时不会加载字节码级注解（修改class文件</li>
+<li><strong>在类加载时处理</strong>：通过代理程序，在类加载器加载<strong>.class</strong> 文件前，读取文件中的注解修改字节码，但并不保存，即原有的<strong>.class</strong>文件内容不变，内存中处理过的字节码的类被类加载器直接加载到虚拟机中，同样的并不加载<strong>.class</strong> 文件中的字节码级注解（读取class文件修改字节码但不保存，类加载器加载修改后的昵称中的字节码</li>
+</ul>
+<p>###运行时期注解 RetentionPolicy.RUNTIME</p>
+<p>即注解被类加载器加载到内存当中，和类的其他构成元素一样被放置于元数据区，供堆区中相应的 class 对象访问，换句话说，此时的注解可以通过反射的方式来读取和处理，这时的处理过程往往是由程序员在编码期间就确定的，是运行效率最低但却是最容易实现的一种注解处理方式<br><img src="https://upload-images.jianshu.io/upload_images/9600525-53a3d29052fb1609.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/webp" alt="img"></p>
+<h2 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> BindView &#123;</span><br><span class="line">     <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> 0 </span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="处理注解"><a href="#处理注解" class="headerlink" title="处理注解"></a>处理注解</h2><h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void bind(Activity activity) throws IllegalAccessException &#123;   </span><br><span class="line">      Field[] fields &#x3D;activity.getClass().getDeclaredFields();</span><br><span class="line">      for (Field field:fields)&#123;     </span><br><span class="line">        BindView bindView&#x3D;field.getAnnotation(BindView.class);     </span><br><span class="line">        if (bindView!&#x3D;null)&#123;           </span><br><span class="line">           int id&#x3D;bindView.value();        </span><br><span class="line">           field.set(activity,activity.findViewById(id));  &#125;   </span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+
+<p>###定义注解处理器</p>
+<p>android studio中add两个java module 分别用来存放注解和注解处理器</p>
+<p>app为安卓的测试module,用于测试自定义的伪ButterKnife库；</p>
+<p>butterknife-annotation 为包含自定义注解的module;</p>
+<p>butterknife-compiler 为<strong>自定义注解处理器</strong>的module,这里将注解处理器和所能处理的注解分在两个不同的module,主要是因为注解处理器实际上只是被<strong>编译器在编译时</strong>调用，并不属于工程，所以在打包时可以将其不打入apk中以<strong>节省空间</strong>，如果自定义的注解和注解处理器处在同一module,那么使用时，app module中会找不到自定义注解，所以需要将注解独立成butterknife-annotation module ，在 app 和注解处理器 butterknife-compiler module 中分别引用，自定义注解处理器在编译时读取源文件中的注解，生成新的源代码文件参与编译；</p>
+<p><strong>创建Processor</strong>继承 AbstractProcessor </p>
+<p>主持注解处理器@AutoService(Processor.class)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 远程依赖 auto-service 库, 用于注册自定义注解处理器到编译器中</span></span><br><span class="line">  implementation <span class="string">'com.google.auto.service:auto-service:1.0-rc4'</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/%E6%B3%A8%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-原子性，可见性，有序性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%8C%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%80%A7/">原子性，可见性，有序性</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%8C%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:33:26.650Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="原子性，可见性，有序性"><a href="#原子性，可见性，有序性" class="headerlink" title="原子性，可见性，有序性"></a>原子性，可见性，有序性</h1><h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>是指一个操作或多个操作要么全部执行，且执行的过程不会被任何因素打断，要么就都不执行。</p>
+<p>JVM内存模型中定义了8中原子操作：</p>
+<blockquote>
+<ol>
+<li>lock:将一个变量标识为被一个线程独占状态</li>
+<li>unclock:将一个变量从独占状态释放出来，释放后的变量才可以被其他线程锁定</li>
+<li>read:将一个变量的值从主内存传输到工作内存中，以便随后的load操作</li>
+<li>load:把read操作从主内存中得到的变量值放入工作内存的变量的副本中</li>
+<li>use:把工作内存中的一个变量的值传给执行引擎，每当虚拟机遇到一个使用到变量的指令时都会使用该指令</li>
+<li>assign:把一个从执行引擎接收到的值赋给工作内存中的变量，每当虚拟机遇到一个给变量赋值的指令时，都要使用该操作</li>
+<li>store:把工作内存中的一个变量的值传递给主内存，以便随后的write操作</li>
+<li>write:把store操作从工作内存中得到的变量的值写到主内存中的变量</li>
+</ol>
+</blockquote>
+<p>long和double是64位的，在32位机上单次次操作能处理的最长长度为32bit。所以对long的读写都要两条指令才能完成（即每次读写64bit中的32bit）。如果JVM要保证long和double读写的原子性，势必要做额外的处理。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%8C%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%8C%E6%9C%89%E5%BA%8F%E6%80%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 

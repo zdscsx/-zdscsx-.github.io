@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>android自定义控件 | Hexo</title>
+  <title>快速失败机制&amp;失败安全机制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+  <meta name="description" content="快速失败机制&amp;失败安全机制系统运行中，如果有错误发生，那么系统立即结束，这种设计就是快速失败。系统运行中，如果有错误发生，系统不会停止运行，它忽略错误（但是会有地方记录下来），继续运行，这种设计就是失败安全。 ##快速失败机制 现象：在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了增加、删除、修改操作，则会抛出ConcurrentModificationException">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android自定义控件">
-<meta property="og:url" content="http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/index.html">
+<meta property="og:title" content="快速失败机制&amp;失败安全机制">
+<meta property="og:url" content="http://yoursite.com/2020/07/13/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E6%9C%BA%E5%88%B6&%E5%A4%B1%E8%B4%A5%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
+<meta property="og:description" content="快速失败机制&amp;失败安全机制系统运行中，如果有错误发生，那么系统立即结束，这种设计就是快速失败。系统运行中，如果有错误发生，系统不会停止运行，它忽略错误（但是会有地方记录下来），继续运行，这种设计就是失败安全。 ##快速失败机制 现象：在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了增加、删除、修改操作，则会抛出ConcurrentModificationException">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
-<meta property="article:published_time" content="2020-07-13T00:04:02.456Z">
-<meta property="article:modified_time" content="2019-06-03T09:35:40.003Z">
+<meta property="article:published_time" content="2020-07-13T00:32:44.762Z">
+<meta property="article:modified_time" content="2020-06-25T10:33:55.877Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,84 +154,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-android自定义控件" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-快速失败机制&amp;失败安全机制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      android自定义控件
+      快速失败机制&amp;失败安全机制
     </h1>
   
 
         
-        <a href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-07-13T00:04:02.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+        <a href="/2020/07/13/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E6%9C%BA%E5%88%B6&%E5%A4%B1%E8%B4%A5%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.762Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="画板-自定义控件实现轨迹划线"><a href="#画板-自定义控件实现轨迹划线" class="headerlink" title="画板|自定义控件实现轨迹划线"></a>画板|自定义控件实现轨迹划线</h1><p>  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。</p>
-<p> 先上完整代码和效果</p>
-<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png" alt="1559554153617"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line">     <span class="keyword">private</span> Path mPath;<span class="comment">//路径</span></span><br><span class="line">     <span class="keyword">private</span> Paint mLinePaint=<span class="keyword">new</span> Paint();<span class="comment">//路径画笔</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">float</span> mStokeWidth=<span class="number">8</span>;<span class="comment">// 画笔线的大小</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPathColor =    Color.parseColor(<span class="string">"#212121"</span>);<span class="comment">//画笔颜色</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreX;<span class="comment">//手指位置x</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mPreY;<span class="comment">//手指位置y</span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">int</span> mColor;</span><br><span class="line">     ArrayList&lt;Integer&gt; colors=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     ArrayList&lt;Path&gt; paths=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context,attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyle)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">         <span class="keyword">super</span>(context);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">  mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line"> mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line"> mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;<span class="comment">//监听滑动</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor=mPathColor;</span><br><span class="line">            mPath=<span class="keyword">new</span> Path();</span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: down"</span>);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (event.getAction()==MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   <span class="keyword">int</span> endX=((<span class="keyword">int</span>)event.getX()+mPreX)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> endY=((<span class="keyword">int</span>)event.getY()+mPreY)/<span class="number">2</span>;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);<span class="comment">//用贝济埃曲线</span></span><br><span class="line">            mPreX=(<span class="keyword">int</span>)event.getX();</span><br><span class="line">            mPreY=(<span class="keyword">int</span>)event.getY();</span><br><span class="line">            Log.d(TAG, <span class="string">"onTouchEvent: move"</span>);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment">//更换画笔颜色</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPaintColor</span><span class="params">(String color</span></span></span><br><span class="line"><span class="function"><span class="params">       mPathColor=Color.parseColor(color)</span></span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">                           </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;paths.size();i++) &#123;</span><br><span class="line">    mLinePaint.setColor(colors.get(i));</span><br><span class="line">    canvas.drawPath(paths.get(i), mLinePaint);</span><br><span class="line">  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">   <span class="comment">// 清屏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        colors.clear();</span><br><span class="line">        paths.clear();</span><br><span class="line">        postInvalidate();</span><br><span class="line">    &#125;</span><br><span class="line">                           </span><br><span class="line">  <span class="comment">//撤销</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lineWithdraw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (paths.size()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        colors.remove(colors.size()-<span class="number">1</span>);</span><br><span class="line">        paths.remove(paths.size()-<span class="number">1</span>);</span><br><span class="line">        postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="快速失败机制-amp-失败安全机制"><a href="#快速失败机制-amp-失败安全机制" class="headerlink" title="快速失败机制&amp;失败安全机制"></a>快速失败机制&amp;失败安全机制</h1><p>系统运行中，如果有错误发生，那么系统立即结束，这种设计就是快速失败。系统运行中，如果有错误发生，系统不会停止运行，它忽略错误（但是会有地方记录下来），继续运行，这种设计就是失败安全。</p>
+<p>##快速失败机制</p>
+<p><strong>现象：</strong>在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了增加、删除、修改操作，则会抛出ConcurrentModificationException。</p>
+<p><strong>原理：</strong>迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果内容发生变化，就会改变modCount的值。每当迭代器使用hashNext()/next()遍历下一个元素之前，都会检测modCount变量是否为expectedmodCount值，是的话就返回遍历；否则抛出ConcurrentModificationException异常，终止遍历。</p>
+<p><strong>注意：</strong>这里异常的抛出条件是检测到 modCount！=expectedmodCount 这个条件。如果集合发生变化时修改modCount值刚好又设置为了expectedmodCount值，则异常不会抛出。因此，不能依赖于这个异常是否抛出而进行并发操作的编程，这个异常只建议用于检测并发修改的bug。</p>
+<p><strong>场景：</strong>java.util包下的集合类都是快速失败的，也不能在多线程下发生并发修改（迭代过程中被修改）。</p>
+<p>##Java集合-<strong>失败安全</strong></p>
+<p><strong>现象：</strong>采用失败安全机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。</p>
+<p><strong>原理：</strong>由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发ConcurrentModificationException。</p>
+<p><strong>缺点：</strong>基于拷贝内容的优点是避免了ConcurrentModificationException，但同样地，迭代器并不能访问到修改后的内容，即：迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。这也就是他的缺点，同时，由于是需要拷贝的，所以比较吃内存。</p>
+<p><strong>场景：</strong>java.util.concurrent包下的容器都是安全失败，可以在多线程下并发使用，并发修改。</p>
+<h3 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h3><p>在很多应用场景中，读操作可能会远远大于写操作。由于读操作根本不会修改原有的数据，因此如果每次读取都进行加锁操作，其实是一种资源浪费。我们应该允许多个线程同时访问 List 的内部数据，毕竟读操作是线程安全的。</p>
+<p><code>CopyOnWriteArrayList</code> 读取是完全不用加锁的，并且更厉害的是：写入也不会阻塞读取操作，只有写入和写入之间需要进行同步等待，读操作的性能得到大幅度提升。</p>
+<p><strong>保证读的时候是当前list的数据</strong></p>
+<p>（<strong>这里失败的定义是修改了集合的内容,但<em>for</em>each照样依据原有集合进行，如下</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CopyOnWriteArrayList&lt;String&gt; s =<span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</span><br><span class="line">      s.add(<span class="string">"早点睡"</span>);</span><br><span class="line">      s.add(<span class="string">"csx"</span>);</span><br><span class="line">      s.add(<span class="string">"zgm"</span>);</span><br><span class="line">      <span class="keyword">for</span> (String s1 :s)&#123;</span><br><span class="line">          <span class="keyword">if</span> (s1.equals(<span class="string">"csx"</span>))</span><br><span class="line">              s.remove(<span class="string">"csx"</span>);</span><br><span class="line">          System.out.println(s1);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">     System.out.println( Arrays.toString(s.toArray()));</span><br></pre></td></tr></table></figure>
 
-<p> <strong>1. 新建一个类继承自View</strong></p>
-<pre><code>public class DrawView extends View {
-   public DrawView(Context context) {
-        super(context);
-}
-
-public DrawView(Context context, AttributeSet attrs)
-{
-    super(context,attrs);
-    init();
-}
-
-public DrawView(Context context, AttributeSet attrs, int defStyle)
-{
-     super(context);
-
-}</code></pre><p>   <strong>2. 重写构造函数</strong></p>
-<p> view的构造函数有如上三个</p>
-<ol>
-<li>在代码中直接new一个 View实例的时候调用第一个构造函数。</li>
-<li>在xml布局文件中调用View的时候,会调用第二个构造函数。</li>
-<li>第三个构造函数的调用,通常是我们自己在构造函数中主动调用的</li>
+<blockquote>
+<p>早点睡<br>csx<br>zgm<br>[早点睡, zgm]</p>
+</blockquote>
+<h4 id="CopyOnWriteArrayList-是如何做到的"><a href="#CopyOnWriteArrayList-是如何做到的" class="headerlink" title="CopyOnWriteArrayList 是如何做到的"></a>CopyOnWriteArrayList 是如何做到的</h4><p><code>CopyOnWriteArrayList</code> 类的所有可变操作（add，set等等）都是通过创建底层数组的新副本来实现的。当 List 需要被修改的时候，并不直接修改原有数组对象，而是对原有数据进行一次拷贝，将修改的内容写入副本中。写完之后，再将修改完的副本替换成原来的数据，这样就可以保证写操作不会影响读操作了。</p>
+<p>从 <code>CopyOnWriteArrayList</code> 的名字可以看出，<code>CopyOnWriteArrayList</code> 是满足 <code>CopyOnWrite</code> 的 ArrayList，所谓 <code>CopyOnWrite</code> 的意思：、就是对一块内存进行修改时，不直接在原有内存块中进行写操作，而是将内存拷贝一份，在新的内存中进行写操作，写完之后，再将原来指向的内存指针指到新的内存，原来的内存就可以被回收。</p>
+<h4 id="CopyOnWriteArrayList-读取和写入源码简单分析"><a href="#CopyOnWriteArrayList-读取和写入源码简单分析" class="headerlink" title="CopyOnWriteArrayList 读取和写入源码简单分析"></a>CopyOnWriteArrayList 读取和写入源码简单分析</h4><ol>
+<li>CopyOnWriteArrayList 读取操作的实现</li>
 </ol>
-<p><strong>注意因为我们是在xml布局文件中调用自定义view，所以我们要重写第二个构造函数 。</strong>传入attrs 改成 super(context,attrs);不然会获取不到这个view。接着调用自定义函数 init();进行初始化。</p>
-<p>  <strong>3.初始化画笔</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//自定义初始化画笔函数</span></span><br><span class="line"></span><br><span class="line">mLinePaint.setColor(mPathColor);<span class="comment">//设置画笔颜色</span></span><br><span class="line">mLinePaint.setStrokeWidth(mStokeWidth);<span class="comment">//画笔宽度</span></span><br><span class="line">mLinePaint.setStyle(Paint.Style.STROKE);<span class="comment">//画笔填充风格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>读取操作没有任何同步控制和锁操作，理由就是内部数组 array 不会发生修改，只会被另外一个 array 替换，因此可以保证数据安全。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** The array, accessed only via getArray/setArray. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> Object[] array;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> get(getArray(), index);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line"><span class="function"><span class="keyword">private</span> E <span class="title">get</span><span class="params">(Object[] a, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (E) a[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> Object[] getArray() &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们画图需要两个工具纸和笔，在android中分别对应Paint和Canvas。需要Paint进行自定义view曲线的绘制</p>
-<p>在这里我们设置了画笔的属性颜色，宽度，填充风格</p>
-<p>其中Paint.Style.STROKE为仅描边</p>
-<p>Paint.Style.FILL 仅填充内部</p>
-<p>Paint.Style.FILLL_AND_STROKEN 填充内部和描边</p>
-<p><strong>4.监听滑动</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">  @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;&#x2F;&#x2F;监听滑动</span><br><span class="line">&#x2F;&#x2F;触摸按下时</span><br><span class="line">if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_DOWN)</span><br><span class="line">        &#123;   mColor&#x3D;mPathColor;</span><br><span class="line">            mPath&#x3D;new Path();</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            mPath.moveTo(mPreX,mPreY);</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: down&quot;);</span><br><span class="line">            colors.add(mColor);</span><br><span class="line">            paths.add(mPath);</span><br><span class="line">            return true;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;触摸点移动时</span><br><span class="line">       else if (event.getAction()&#x3D;&#x3D;MotionEvent.ACTION_MOVE)</span><br><span class="line">        &#123;   int endX&#x3D;((int)event.getX()+mPreX)&#x2F;2;</span><br><span class="line">            int endY&#x3D;((int)event.getY()+mPreY)&#x2F;2;</span><br><span class="line">            mPath.quadTo(mPreX,mPreY,endX,endY);&#x2F;&#x2F;用贝济埃曲线</span><br><span class="line">            mPreX&#x3D;(int)event.getX();</span><br><span class="line">            mPreY&#x3D;(int)event.getY();</span><br><span class="line">            Log.d(TAG, &quot;onTouchEvent: move&quot;);</span><br><span class="line">            postInvalidate();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        return super.onTouchEvent(event);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>CopyOnWriteArrayList 写入操作的实现</li>
+</ol>
+<p>CopyOnWriteArrayList 写入操作 <code>add()</code> 方法在添加集合的时候加了锁，保证同步，避免多线程写的时候会 copy 出多个副本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Appends the specified element to the end of this list.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> e element to be appended to this list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; (as specified by &#123;<span class="doctag">@link</span> Collection#add&#125;)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">this</span>.lock;</span><br><span class="line">    lock.lock();  <span class="comment">// 加锁</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Object[] elements = getArray();</span><br><span class="line">        <span class="keyword">int</span> len = elements.length;</span><br><span class="line">        Object[] newElements = Arrays.copyOf(elements, len + <span class="number">1</span>);  <span class="comment">// 拷贝新数组</span></span><br><span class="line">        newElements[len] = e;</span><br><span class="line">        setArray(newElements);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        lock.unlock();  <span class="comment">// 释放锁</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这里的Path是一个路径，你能用Canvas中的drawPath来把这条路径画出来这里用了两个list分别用来保存每条路径和路径的颜色。</p>
-<p>路径的始点用moveTo(); </p>
-<p>这里用了贝塞尔曲线使路径看起来比较平滑</p>
-<p>quadTo(float x1, float y1, float x2, float y2):</p>
-<p>x1，y1为控制点的坐标值，x2，y2为终点的坐标值；</p>
-<p>直接用lineTo连接点也行比较简单。</p>
-<p>postInvalidate是Android用来刷新界面的。调用了onDraw（）进行重新绘制。</p>
-<p>到这里画板的功能已经大部分完成了。再耐心点看下去</p>
-<p><strong>5.更换画笔颜色，清屏，撤销</strong></p>
-<p>这些比较简单就看下上面代码就行了</p>
-<p><strong>6.在活动显示这个自定义view</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.example.draw.view.DrawView</span><br><span class="line">    android:background&#x3D;&quot;@color&#x2F;white&quot;</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;drawview_draw_draw&quot;</span><br><span class="line">    android:layout_below&#x3D;&quot;@id&#x2F;re_draw_control&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>像这样直接在layout中加入即可</p>
-<p>使用时像其他控件一样使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mDrawView=findViewById(R.id.drawview_draw_draw);</span><br><span class="line">mDrawView.clear()</span><br><span class="line">mDrawView.lineWithdraw();</span><br><span class="line">mDrawView.setPaintColor(<span class="string">"#212121"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这篇博客到这就结束了。第一次写不足之处，还望各位批评指正，和大家一起交流。觉得有帮助可以帮忙点个赞hhh。</p>
+<p><strong>优点</strong></p>
+<p>对于一些读多写少的数据，这种做法的确很不错，例如配置、黑名单、物流地址等变化非常少的数据，这是一种无锁的实现。可以帮我们实现程序更高的并发。</p>
+<p><strong>缺点</strong></p>
+<p>这种实现只是保证数据的最终一致性，在添加到拷贝数据而还没进行替换的时候，读到的仍然是旧数据。如果对象比较大，频繁地进行替换会消耗内存，从而引发Java的GC问题，这个时候，我们应该考虑其他的容器，例如ConcurrentHashMap。</p>
 
       
 
@@ -313,7 +291,7 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/%E5%BF%AB%E9%80%9F%E5%A4%B1%E8%B4%A5%E6%9C%BA%E5%88%B6&%E5%A4%B1%E8%B4%A5%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,18 +305,18 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
   
 <nav id="article-nav">
   
-    <a href="/2020/07/13/Binder/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/13/%E9%9D%A2%E7%BB%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Binder
+          面经
         
       </div>
     </a>
   
   
-    <a href="/2020/07/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2020/07/13/%E8%B7%A8%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨进程通信</div>
       <i class="icon-circle-right"></i>
     </a>
   

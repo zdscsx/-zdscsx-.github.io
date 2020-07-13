@@ -6,21 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>android自定义控件 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
-<meta property="og:type" content="article">
-<meta property="og:title" content="android自定义控件">
-<meta property="og:url" content="http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="画板|自定义控件实现轨迹划线  第一次写博客，因为自己在阅读一些博客有一些难懂的会比较痛苦，所以这篇会尽量介绍清楚。  先上完整代码和效果  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
-<meta property="article:published_time" content="2020-07-13T00:04:02.456Z">
-<meta property="article:modified_time" content="2019-06-03T09:35:40.003Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1559554153617.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,14 +150,448 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-android自定义控件" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-HTTP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      android自定义控件
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/HTTP/">HTTP</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/HTTP/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.708Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#HTTP </p>
+<p>HTTP 协议（Hypertext Transfer Protocol）已经成为互联网上最常用的应用层协议，然而其本身只是用于传输超文本的网络协议，<strong>不会提供任何安全上的保证</strong>，使用明文在互联网上传输数据包使得<strong>窃听</strong>和<strong>中间人攻击</strong>成为可能，通过 HTTP 传输密码其实与在互联网上裸奔也差不多。</p>
+<p><strong>HTTPS</strong> 是对 HTTP 协议的扩展，我们可以使用它在互联网上<strong><em>安全</em></strong>地传输数据[^3]，然而 HTTPS 请求的发起方<strong>第一次</strong>从接收方获取响应需要经过 <strong>4.5 倍</strong>的往返延迟（Round-Trip Time，RTT）。本文将详细介绍请求发起和响应的过程，分析为什么 HTTPS 协议需要通过 4.5-RTT 的时间获得服务提供方的响应：</p>
+<ul>
+<li>TCP 协议 — 通信双方通过三次握手建立 TCP 连接[^4]；</li>
+<li>TLS 协议 — 通信双方通过四次握手建立 TLS 连接[^5]；</li>
+<li>HTTP 协议 — 客户端向服务端发送请求，服务端发回响应；</li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200620085015694.png" alt="image-20200620085015694"></p>
+<p>。</p>
+<ol>
+<li>TCP服务器进程先创建传输控制块TCB，时刻准备接受客户进程的连接请求，此时服务器就进入了LISTEN（监听）状态；  </li>
+<li>TCP客户进程也是先创建传输控制块TCB，然后向服务器发出连接请求报文，这是报文首部中的同部位SYN=1，同时选择一个初始序列号 seq=x ，此时，TCP客户端进程进入了 SYN-SENT（同步已发送状态）状态。TCP规定，SYN报文段（SYN=1的报文段）不能携带数据，但需要消耗掉一个序号。</li>
+<li>TCP服务器收到请求报文后，如果同意连接，则发出确认报文。确认报文中应该 ACK=1，SYN=1，确认号是ack=x+1，同时也要为自己初始化一个序列号 seq=y，此时，TCP服务器进程进入了SYN-RCVD（同步收到）状态。这个报文也不能携带数据，但是同样要消耗一个序号。</li>
+<li>TCP客户进程收到确认后，还要向服务器给出确认。确认报文的ACK=1，ack=y+1，自己的序列号seq=x+1，此时，TCP连接建立，客户端进入ESTABLISHED（已建立连接）状态。TCP规定，ACK报文段可以携带数据，但是如果不携带数据则不消耗序号。</li>
+<li>当服务器收到客户端的确认后也进入ESTABLISHED状态，此后双方就可以开始通信了。</li>
+</ol>
+<p>最初版本的 TCP 协议确实会通过三次通信建立 TCP 连接，在目前的大多数场景下，三次握手也是无法避免的，不过在 2014 年提出的 TCP 快启（TCP Fast Open，TFO）却可以在某些场景下通过一次通信建立 TCP 连接[^8]。\</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7br7xlrfQJUjRuvFWranoxzwZA8mekjXP6DmicenAIrpTHINk4ibQ9lm7b5nJdTVGCOia4kh6NPxPPhEg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>TCP 快启策略使用存储在客户端的 TFO Cookie 与服务端快速建立连接。TCP 连接的客户端向服务端发送 <code>SYN</code> 消息时会携带快启选项，服务端会生成一个 Cookie 并将其发送至客户端，客户端会缓存该 Cookie，当其与服务端重新建立连接时，它会使用存储的 Cookie 直接建立 TCP 连接，服务端验证 Cookie 后会向客户端发送 <code>SYN</code> 和 <code>ACK</code> 并开始传输数据，这也就能减少通信的次数。</p>
+<p>##TLS</p>
+<p>TLS 的作用是在可靠的 TCP 协议上构建安全的传输通道，其本身是不提供可靠性保障的，我们还是需要下层可靠的传输层协议。在通信双方建立可靠的 TCP 连接之后，我们就需要通过 TLS 握手交换双方的密钥了，在这里我们将介绍 TLS 1.2 的连接建立过程[^9]：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/PvFQOcBK7br7xlrfQJUjRuvFWranoxzwkft9KuYPnpmGvDKXRgfH1xnttjCpj9nenWOjmv4vKT8yFEKmOG8aOg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<ol>
+<li><p>客户端向服务端发送 Client Hello 消息，其中携带客户端支持的协议版本、加密算法、压缩算法以及<strong>客户端生成的随机数</strong>；</p>
+</li>
+<li><p>服务端收到客户端支持的协议版本、加密算法等信息后；</p>
+</li>
+<li><ol>
+<li>向客户端发送 Server Hello 消息，并携带选择特定的协议版本、加密方法、会话 ID 以及<strong>服务端生成的随机数</strong>；</li>
+<li>向客户端发送 Certificate 消息，即服务端的证书链，其中包含证书支持的域名、发行方和有效期等信息；</li>
+<li>向客户端发送 Server Key Exchange 消息，传递<strong>公钥</strong>以及签名等信息；</li>
+<li>向客户端发送可选的消息 CertificateRequest，验证客户端的证书；</li>
+<li>向客户端发送 Server Hello Done 消息，通知服务端已经发送了全部的相关信息；</li>
+</ol>
+</li>
+<li><p>客户端收到服务端的协议版本、加密方法、会话 ID 以及证书等信息后，验证服务端的证书；</p>
+</li>
+<li><ol>
+<li>向服务端发送 Client Key Exchange 消息，包含<strong>使用服务端公钥加密后的随机字符串</strong>，即预主密钥（Pre Master Secret）；</li>
+<li>向服务端发送 Change Cipher Spec 消息，通知服务端后面的数据段会加密传输；</li>
+<li>向服务端发送 Finished 消息，其中包含加密后的握手信息；</li>
+</ol>
+</li>
+<li><p>服务端收到 Change Cipher Spec 和 Finished 消息后；</p>
+</li>
+<li><ol>
+<li>向客户端发送 Change Cipher Spec 消息，通知客户端后面的数据段会加密传输；</li>
+<li>向客户端发送 Finished 消息，验证客户端的 Finished 消息并完成 TLS 握手；</li>
+</ol>
+</li>
+</ol>
+<p>##HTTP </p>
+<p>在已经建立好 TCP 和 TLS 通道上传输数据是比较简单的事情，HTTP 协议可以直接利用下层建立的可靠的、安全的通道传输数据。客户端通过 TCP 的套接字接口向服务端写入数据，服务端在接收到数据、进行处理后通过相同的途径返回。因为整个过程需要客户端发送请求以及服务端返回响应，所以耗时是 1-RTT。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200620120834476.png" alt="image-20200620120834476"></p>
+<p>HTTP 协议的数据交换只会消耗 1-RTT，当客户端和服务端仅处理一次 HTTP 请求时，从 HTTP 协议本身我们已经无法进行优化。不过随着请求的数量逐渐增加，HTTP/2 就可以复用已经建立的 TCP 连接减少 TCP 和 TLS 握手带来的额外开销。</p>
+<p>总结一下 HTTPS 协议需要 9 倍时延才能完成通信的原因：</p>
+<ol>
+<li>TCP 协议需要通过三次握手建立 TCP 连接保证通信的可靠性（1.5-RTT）；</li>
+<li>TLS 协议会在 TCP 协议之上通过四次握手建立 TLS 连接保证通信的安全性（2-RTT）；</li>
+<li>HTTP 协议会在 TCP 和 TLS 上通过一次往返发送请求并接收响应（1-RTT）；</li>
+</ol>
+<p>需要注意的是，本文对往返延时的计算都基于特定的场景以及特定的协议版本，网络协议的版本在不断更新和演进，过去忽略的问题最开始都会通过补丁的方式更新，但是最后仍然会需要从底层完成重写。</p>
+<p>HTTP/3 就是一个这样的例子，它会使用基于 UDP 的 QUIC 协议进行握手，将 TCP 和 TLS 的握手过程结合起来，把 7 次握手减少到了 3 次握手，直接建立了可靠并且安全的传输通道，</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/HTTP/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CPU" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/CPU/">CPU</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/CPU/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.706Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#CPU</p>
+<h2 id="数据通路"><a href="#数据通路" class="headerlink" title="数据通路"></a>数据通路</h2><p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590163346174.png" alt="1590163346174"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590163665784.png" alt="1590163665784"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590163878154.png" alt="1590163878154"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590163995301.png" alt="1590163995301"></p>
+<h2 id="硬布线"><a href="#硬布线" class="headerlink" title="硬布线"></a>硬布线</h2><p>###三级定长指令周期</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590249452778.png" alt="1590249452778"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590249771963.png" alt="1590249771963"></p>
+<p>Read和ARin信号产生的所有条件。以此类推可以写出所有单总线CPU中的所有控制点的的<strong>逻辑表达式</strong>。化简后可以得到整个硬布线控制器的所有控制信号的最简表达式，从而用对应<strong>门电路</strong>实现硬布线控制器的组合逻辑。。</p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590250130082.png" alt="1590250130082"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590250411380.png" alt="1590250411380"></p>
+<p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590252142564.png" alt="1590252142564"></p>
+<h2 id="微程序"><a href="#微程序" class="headerlink" title="微程序"></a>微程序</h2><p><img src="C:%5CUsers%5C25475%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1590285874925.png" alt="1590285874925"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/CPU/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Context/">Context</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Context/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.704Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>Android程序不像Java程序一样，随 便创建一个类，写个main()方法就能运行，Android应用模型是基于组件的应用设 计模式，组件的运行要有一个完整的Android工程环境，在这个环境下，Activity、 Service等系统组件才能够正常工作，而这些组件并不能采用普通的Java对象创建 方式，new一下就能创建实例了，而是要有它们各自的上下文环境，也就是我们这 里讨论的Context。可以这样讲，Context是维持Android程序中各组件能够正常工作 的一个核心功能类。</p>
+<h2 id="Context到底是什么"><a href="#Context到底是什么" class="headerlink" title="Context到底是什么"></a><strong>Context到底是什么</strong></h2><p>Context 是一个关于应用环境的抽象类，它的实现由安卓系统提供。用来访问一些应用内资源、类，也可以调用系统服务开启 Activity 、Service 、发送和接收广播等。 Activity 和 Service 都是 Context , 应用的 Context 数就是 Activity 、Service、Application 的个数之和， Application 如果是多进程应用就会有多个</p>
+<h2 id="Context-类型"><a href="#Context-类型" class="headerlink" title="Context 类型"></a>Context 类型</h2><p>应用里有 Activity 、Service、Application 这些 Context ，<strong>共同点</strong>：它们都是 ContextWrapper 的子类，而 ContextWrapper 的成员变量 mBase 可以用来存放系统实现的 ContextImpl，这样我们在调用如 Activity 的 Context 方法时，都是通过静态代理的方式最终调用到 ContextImpl 的方法。我们调用 ContextWrapper 的 getBaseContext 方法就能拿到 ContextImpl 的实例</p>
+<p><strong>不同点</strong>，它们有各自不同的生命周期；在功能上，只有 Activity 显示界面，正因为如此，Activity 继承的是 ContextThemeWrapper 提供一些关于主题，界面显示的能力，间接继承了 ContextWrapper ；而 Applicaiton 、Service 都是直接继承 ContextWrapper ，所以我们要记住一点，凡是跟 UI 有关的，都应该用 Activity 作为 Context 来处理，否则要么会报错，要么 UI 会使用系统默认的主题。</p>
+<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>Application 是存在于 app 进程的一个单例 Context 对象。在 Activity 或者 Service 中，可以使用 getApplication() 方法获取这个 Application 对象。除此之外，从他继承了 Context 的组件，都可以通过 getApplicationContext() 来获取到这个 Application 对象。不过，不论是通过什么方法获得，最后得到的 Application 对象都是同一个。</p>
+<h3 id="Activity-Service"><a href="#Activity-Service" class="headerlink" title="Activity/Service"></a>Activity/Service</h3><p>Activity/Service 继承自同一个基类 Context —— ContextWrapper，因此两者拥有相同的 Context API，但是具体任务还是通过将调用委托代理给实际的内部对象来完成。每当你创建一个新的 Activity 或者 Service 的时候，同时就会创建一个新的 ContextImpl，ContextImpl 就是最终处理所有 Context API 方法的内部对象。不同的Activity 或者 Service 的 Context 都是不一样的。</p>
+<h3 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h3><p>BroadcastReceiver 本身并不是一个 Context，但是 Android framework 会在每一个广播事件发生的时候，给相应 BroadcastReceiver 的 onReceive() 传递一个 Context，这个 ReceiverRestrictedContext 有个两个方法不可用： registerReceiver() 和 bindService()。</p>
+<h3 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h3><p>ContentProvider 本身也不是 Context，但是调用 getContext() 可以获取一个 Context。如果调用者与 ContentProvider 运行在同一个进程内，那么这个返回的 Context 就是上文的 application context。如果调用者与 ContentProvider 不是运行在同一个进程之内，那么这个方法会返回一个指代 provider 所在包的新 Context 实例。</p>
+<h2 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h2><p>当我们将一个 Context 的引用保存到一个存活时间比 Context 本身生命周期还长的对象时，问题就来了。比如，我们有一个单例对象，要求使用一个 Context 来执行资源加载或访问 ContentProvider，并且传入的是一个 Activity 或 Service 对象：</p>
+<p>单例对象是一个静态变量，受其所在类的生命周期控制。这就意味着，在这个单例对象的存活时间内，这个单例持有的对象（引用）都不会被垃圾回收。 所以这种实现的问题就是你无法知道 Context 到底来自何处，如果这个 Context 是一个 Activity 或者 Service， 就会变得不安全：这个被持有的 Activity，以及其内部所有的 View 或者其他的耗内存对象都无法被回收，从而引发内存泄露。</p>
+<p>为了防止这种问题，我们改为让单例持有 application context；</p>
+<p>##面试常见</p>
+<p>###getApplication 和 getApplicationContext 有什么区别？</p>
+<p>用起来没区别，都是返回应用的 Application 对象；但是从来源上， getApplication 是 Activity 、 Service 里的方法， 而 getApplicationContext 则是 Context 里的抽象方法，所以能调用到的它们的地方不一样。</p>
+<h3 id="ContextImpl-实例是什么时候生成的，在-Activity-的-onCreate-里能拿到这个实例吗"><a href="#ContextImpl-实例是什么时候生成的，在-Activity-的-onCreate-里能拿到这个实例吗" class="headerlink" title="ContextImpl 实例是什么时候生成的，在 Activity 的 onCreate 里能拿到这个实例吗"></a>ContextImpl 实例是什么时候生成的，在 Activity 的 onCreate 里能拿到这个实例吗</h3><p>可以。我们开发的时候，经常会在 onCreate 里拿到 Application，如果用 getApplicationContext 取，最终调用的就是 ContextImpl 的 getApplicationContext 方法，如果调用的是 getApplication 方法，虽然没调用到 ContextImpl ，但是返回 Activity 的成员变量 mApplication 和 ContextImpl 的初始化时机是一样的。</p>
+<p>再说下它的原理，Activity 真正开始启动是从 ActivityThread.performLaunchActivity 开始的，这个方法做了这些事：</p>
+<ul>
+<li>通过 ClassLoader 去加载目标 Activity 的类，从而创建 对象</li>
+<li>从 packageInfo 里获取 Application 对象</li>
+<li>调用 createBaseContextForActivity 方法去创建 ContextImpl</li>
+<li>调用 activity.attach ( contextImpl , application) 这个方法就把 Activity 和 Application 以及 ContextImpl 关联起来了，就是上面结论里说的时机一样</li>
+<li>最后调用 activity.onCreate 生命周期回调</li>
+</ul>
+<p>Activity 是先创建类，再初始化 Context ，最后调用 onCreate , 从而得出问题的答案。不仅 Activity 是这样， Application 、Service 里的 Context 初始化也都是这样的。</p>
+<h3 id="ContentProvider-里的-Context-什么时候初始化"><a href="#ContentProvider-里的-Context-什么时候初始化" class="headerlink" title="ContentProvider 里的 Context 什么时候初始化"></a>ContentProvider 里的 Context 什么时候初始化</h3><p>ContentProvider 本身不是 Context ，但是它有一个成员变量 mContext ，是通过构造函数传入的。那么这个问题就变成了，ContentProvider 什么时候创建。应用创建 Application 是通过调用 ActivityThread.handleBindApplication 方法，这个方法的相关流程有：</p>
+<ul>
+<li>创建 Application</li>
+<li>初始化 Application 的 Context</li>
+<li>调用 installContentProviders 并传入刚创建好的 Application 来创建 ContentProvider</li>
+<li>调用 Application.onCreate</li>
+</ul>
+<h3 id="BroadcastReceiver-方法里的-Context-是哪来的"><a href="#BroadcastReceiver-方法里的-Context-是哪来的" class="headerlink" title="BroadcastReceiver 方法里的 Context 是哪来的"></a>BroadcastReceiver 方法里的 Context 是哪来的</h3><p>广播接收器，分动态注册和静态注册。动态注册很简单，在调用 Context.registerReceiver 动态注册 BroadcastReceiver 时，会生成一个 ReceiverDispatcher 会持有这个 Context ，这样当有广播分发到它时，调用 onReceiver 方法就可以把 Context 传递过去了。当然，这也是为什么不用的时候要 unregisterReceiver 取消注册，不然这个 Context 就泄漏了。</p>
+<p>静态注册时，在分发的时候最终调用的是 ActivityThread.handleReceiver ，这个方法直接通过 ClassLoader 去创建一个 BroadcastReceiver 的对象，而传递给 onReceiver 方法的 Context 则是通过 context.getReceiverRestrictedContext() 生成的一个以 Application 为 mBase 的 ContextWrapper。注意这边的 Context 不是 Application 哈。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/Context/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Binder" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/Binder/">Binder</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/13/Binder/" class="archive-article-date">
+  	<time datetime="2020-07-13T00:32:44.701Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a>Binder</h1><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/af0927004qofj3JMAsRZzcYQiaXtnSq4HJt8ibSNMQe1tZFVvbleAcQD4nByHMLYkM2KG5ibD1ybMsADHOc3JrraA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>Binder是什么？Binder是为跨进程通信而生的产物。我们的app都是由Zygote进程fork出来的，每个app都运行在单独的进程中，一个app想与另外一个app进行通信，只能采用跨进程的方式，传统的Linux跨进程方式有如下几种：管道、信号量、共享内存及Socket等，Android系统建立在Linux的基础上，但其采用的是Binder来进行IPC的。</p>
+<p>binder 机制分为四部分，binder 驱动、Service Manager、客户端、服务端。类比网络通信，对 Binder 机制来说，Service Manager 是 DNS，binder 驱动是 IPC 通信的路由器，负责实现不同进程间的<strong>数据交互</strong>，是 Binder 机制的核心。binder 驱动运行在内核空间，不同进程间通过 binder 驱动才能通信。</p>
+<p>binder 驱动对 Linux 系统来说，它是一个字符驱动设备，运行在内核空间，向上层提供 /dev/binder 设备节点以及 open、mmap、ioctl 等系统调用。</p>
+<p>##进程空间</p>
+<p>Linux 把进程空间划分为用户空间和内核空间，分别运行用户程序和系统内核。</p>
+<p>用户空间和内核空间虽也是隔离的，但可以通过 copy_from_user 将数据从用户空间拷贝到内核空间，通过 copy_to_user 将数据从内核空间拷贝到用户空间。</p>
+<p>所以 <strong>binder 驱动要处于内核空间</strong>（就可以通过copy_from_user ，copy_to_user ）实现两个进程间的通信。一般的 IPC 方式需要分别调用这两个函数，数据就拷贝了两次，而 binder 将内核空间与目标用户空间进行了 mmap（mmap将一个文件或者其它对象映射进内存），只需调 copy_from_user 拷贝一次即可。</p>
+<h2 id="Linux-的驱动设备"><a href="#Linux-的驱动设备" class="headerlink" title="Linux 的驱动设备"></a>Linux 的驱动设备</h2><p>Linux 把所有的硬件访问都抽象为对文件的读写、设置，这一”抽象”的具体实现就是驱动程序。驱动程序充当硬件和软件之间的枢纽，提供了一套标准化的调用，并将这些调用<strong>映射</strong>为<strong>实际硬件设备相关的操作</strong>，对应用程序来说隐藏了设备工作的细节。</p>
+<p>Linux 驱动设备分为三类，分别是字符设备、块设备和网络设备：</p>
+<p><strong>字符设备</strong>就是能够像字节流文件一样被访问的设备。对字符设备进行读/写操作时，实际硬件的 I/O 一般也紧接着发生。字符设备驱动通常会实现 open、close、read 和 write 系统调用，比如显示屏、键盘、串口、LCD、LED 等。</p>
+<p><strong>块设备</strong>指通过传输数据块来访问的设备，比如硬盘、SD卡、U盘、光盘等。</p>
+<p><strong>网络设备</strong>是能够和其他主机交换数据的设备，比如网卡、蓝牙等设备。</p>
+<p>字符设备中有一个比较特殊的杂项设备，它可以自动生成设备节点，设备号为 10。Android 的 Ashmem、Binder 都属于杂项设备。</p>
+<h3 id="open、mmap、ioctl-方法"><a href="#open、mmap、ioctl-方法" class="headerlink" title="open、mmap、ioctl 方法"></a>open、mmap、ioctl 方法</h3><p>它们分别对应于驱动源码 binder.c 中的 binder_open()、binder_mmap()、binder_ioctl() 方法</p>
+<h4 id="open"><a href="#open" class="headerlink" title="open"></a>open</h4><ol>
+<li>每个需要通过Binder通信的进程都需要打开/dev/binder驱动一次（至多一次）</li>
+<li>打开Binder驱动之后，内核会调用驱动程序的binder_open方法，该方法内部将会创建binder_proc结构体，内存存储了进程信息以及UID信息<strong>每个进程独有一份</strong>。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binder_open</span><span class="params">(struct inode *nodp, struct file *filp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">binder_proc</span> *<span class="title">proc</span>;</span></span><br><span class="line"></span><br><span class="line">    binder_debug(BINDER_DEBUG_OPEN_CLOSE, <span class="string">"binder_open: %d:%d\n"</span>,</span><br><span class="line">             current-&gt;group_leader-&gt;pid, current-&gt;pid);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*分配binder_proc结构体*/</span></span><br><span class="line">    proc = kzalloc(<span class="keyword">sizeof</span>(*proc), GFP_KERNEL);</span><br><span class="line">    <span class="keyword">if</span> (proc == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> -ENOMEM;</span><br><span class="line">    <span class="comment">/*增加线程引用计数*/</span></span><br><span class="line">    get_task_struct(current);</span><br><span class="line">    proc-&gt;tsk = current;</span><br><span class="line">    <span class="comment">/*初始化todo队列，用于存放待处理的请求（server端）*/</span></span><br><span class="line">    INIT_LIST_HEAD(&amp;proc-&gt;todo);</span><br><span class="line">    <span class="comment">/*初始化wait队列*，这个队列用于等待返回结果（client端）或者等待请求（server端）/</span></span><br><span class="line"><span class="comment">    init_waitqueue_head(&amp;proc-&gt;wait);</span></span><br><span class="line"><span class="comment">    proc-&gt;default_priority = task_nice(current);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    binder_lock(__func__);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    /*类型为BINDER_STAT_PROC对象的创建个数加1*/</span></span><br><span class="line">    binder_stats_created(BINDER_STAT_PROC);</span><br><span class="line">    <span class="comment">/*将创建的binder_proc链入binder_procs的哈希链表中*/</span></span><br><span class="line">    hlist_add_head(&amp;proc-&gt;proc_node, &amp;binder_procs);</span><br><span class="line">    <span class="comment">/*记录当前进程的pid*/</span></span><br><span class="line">    proc-&gt;pid = current-&gt;group_leader-&gt;pid;</span><br><span class="line">    INIT_LIST_HEAD(&amp;proc-&gt;delivered_death);</span><br><span class="line">    <span class="comment">/*将binder_proc存放在filp的private_data域，以便于在之后的mmap、ioctl中获取*/</span></span><br><span class="line">    filp-&gt;private_data = proc;</span><br><span class="line"></span><br><span class="line">    binder_unlock(__func__);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (binder_debugfs_dir_entry_proc) &#123;</span><br><span class="line">        <span class="keyword">char</span> strbuf[<span class="number">11</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">snprintf</span>(strbuf, <span class="keyword">sizeof</span>(strbuf), <span class="string">"%u"</span>, proc-&gt;pid);</span><br><span class="line">        <span class="comment">/*创建/sys/kernel/debug/binde/proc/pid文件*/</span></span><br><span class="line">        proc-&gt;debugfs_entry = debugfs_create_file(strbuf, S_IRUGO,</span><br><span class="line">            binder_debugfs_dir_entry_proc, proc, &amp;binder_proc_fops);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####binder_mmap()</p>
+<p>binder_mmap() 的主要工作是建立应用进程虚拟内存在内核中的一块映射，这样应用程序和内核就拥有了共享的内存空间，为后面的一次拷贝做准备。</p>
+<p>若存在映射关系，则</p>
+<ol>
+<li>在多个进程的虚拟内存区域已经同一个共享对象建立映射关系的前提下</li>
+<li>若一个进程对该虚拟区域进行写操作</li>
+<li>那么对于该共享对象映射到其自身虚拟内存区域的进程也可见</li>
+</ol>
+<p>####binder_ioctl()</p>
+<p>binder 驱动并不提供常规的 read()、write() 等文件操作，全部通过 binder_ioctl() 实现，所以 binder_ioctl() 是 binder 驱动中工作量最大的一个，它承担了 binder 驱动的大部分业务。</p>
+<p>binder 机制将业务细分为不同的命令，调用 binder_ioctl() 时<strong>传入具体的命令来区分业务</strong>，比如有读写数据的 BINDER_WRITE_READ 命令、 Service Manager 的注册命令 BINDER_SET_CONTEXT_MGR 等等。</p>
+<p>BINDER_WRITE_READ 命令最为关键，其细分了一些子命令，比如 BC_TRANSACTION、BC_REPLY 等。BC_TRANSACTION 就是上层最常用的 IPC 调用命令了，AIDL 接口的 transact 方法就是这个命令。</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><table>
+<thead>
+<tr>
+<th>结构体</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>binder_proc</td>
+<td>描述使用 binder 的进程，当调用 binder_open 函数时会创建</td>
+</tr>
+<tr>
+<td>binder_thread</td>
+<td>描述使用 binder 的线程，当调用 binder_ioctl 函数时会创建</td>
+</tr>
+<tr>
+<td>binder_node</td>
+<td>描述 binder 实体节点，对应于一个 server，即用户态的 BpBinder 对象</td>
+</tr>
+<tr>
+<td>binder_ref</td>
+<td>描述对 binder 实体节点的引用，关联到一个 binder_node</td>
+</tr>
+<tr>
+<td>binder_buffer</td>
+<td>描述 binder 通信过程中存储数据的Buffer</td>
+</tr>
+<tr>
+<td>binder_work</td>
+<td>描述一个 binder 任务</td>
+</tr>
+<tr>
+<td>binder_transaction</td>
+<td>描述一次 binder 任务相关的数据信息</td>
+</tr>
+<tr>
+<td>binder_ref_death</td>
+<td>描述 binder_node 即 binder server 的死亡信息</td>
+</tr>
+</tbody></table>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/af0927004qofj3JMAsRZzcYQiaXtnSq4HyRCSZTLaBicVPPpiaGWAfs3V0tObAtGTCbzejKYXUSiczM1N7vR6SDsvw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="yu"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/Binder/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-android自定义控件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">android自定义控件</a>
     </h1>
   
 
@@ -238,27 +666,6 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
       
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
     </div>
     <div class="article-info article-info-index">
       
@@ -266,84 +673,16 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/13/android%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/07/13/Binder/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Binder
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/07/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -363,14 +702,87 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
 
 
 
-  
-  
-  
 
   
-
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/hello-world/">Hello World</a>
+    </h1>
   
 
+        
+        <a href="/2020/07/13/hello-world/" class="archive-article-date">
+  	<time datetime="2020-07-12T16:21:05.714Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/13/hello-world/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
   
 
 
@@ -393,8 +805,8 @@ public DrawView(Context context, AttributeSet attrs, int defStyle)
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
